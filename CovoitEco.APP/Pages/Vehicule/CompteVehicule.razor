@@ -1,0 +1,26 @@
+﻿@page "/CompteVehicule"
+@using CovoitEco.APP.Views.Vehicule
+
+<PageTitle>Vehicules</PageTitle>
+
+<h1>Vehicules</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <a href="/EnregistrementVehicule">Enregistrer un véhicule</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <CompteMenu/>
+    </div>
+    <div class="col-md-8">
+        <GetAllVehiculeProfile/>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <GetVehiculeProfile/>
+    </div>
+</div>

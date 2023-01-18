@@ -1,0 +1,51 @@
+﻿@page "/GetCampingCar"
+@using CovoitEco.APP.Model.Models
+@using Newtonsoft.Json
+@inject HttpClient Http
+
+
+<PageTitle>GetCampingcar</PageTitle>
+
+<h1>Test <code>HttpClient</code></h1>
+
+
+@if (todoItems  == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in todoItems.Lists )
+        {
+            <tr>
+                <td>@forecast.Brand</td>
+                <td>@forecast.Serie</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private CampingCars todoItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var httpResponse = await Http.GetAsync("https://localhost:7131/api/CampingCar/GetCampingCar");
+        if (!httpResponse.IsSuccessStatusCode) throw new Exception(); 
+        var content = await httpResponse.Content.ReadAsStringAsync();
+        todoItems = JsonConvert.DeserializeObject<CampingCars>(content);
+    }
+
+
+}

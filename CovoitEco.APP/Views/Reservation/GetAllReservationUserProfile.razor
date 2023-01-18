@@ -1,0 +1,41 @@
+﻿@inherits CovoitEco.APP.Components.Reservation.ReservationComponent
+
+@if (responseGetAllReservationUser == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date de départ</th>
+                <th scope="col">Localité de départ</th>
+                <th scope="col">Date d'arrivé</th>
+                <th scope="col">Localité d'arrivé</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservationUserProfile in responseGetAllReservationUser.Lists)
+            {
+                <tr>
+                    <td>@reservationUserProfile.RES_ANN_DateDepart</td>
+                    <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
+                    <td>@reservationUserProfile.RES_ANN_DateArrive</td>
+                    <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
+                    <td>@reservationUserProfile.RES_ANN_Prix</td>
+                    <td>@reservationUserProfile.RES_ANN_StatutLibelle</td>
+                    <td class="align-middle">
+                        <button class="btn btn-warning"><a @onclick="@(() => UpdateIdReservation(reservationUserProfile.RES_Id))" href="/DetailReservation">Detail</a></button>
+                        @if (@reservationUserProfile.RES_FACT_FactureResolus == false)
+                        {
+                            <button class="btn btn-warning" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

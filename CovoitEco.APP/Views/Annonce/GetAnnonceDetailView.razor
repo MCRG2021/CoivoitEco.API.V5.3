@@ -1,0 +1,64 @@
+﻿@using Polly
+@inherits CovoitEco.APP.Components.Annonce.DetailAnnonceComponent
+
+
+@if (responseAnnonce == null || responseGetVehicule == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div>
+        <p>Nom : @responseAnnonce.Lists[0].ANNPR_AnnonceurNom</p>
+        <p>Prénom : @responseAnnonce.Lists[0].ANNPR_AnnonceurPrenom</p>
+    </div>
+
+    <div>
+        <h2>@responseGetVehicule.Lists[0].VEHPR_Marque @responseGetVehicule.Lists[0].VEHPR_Modele</h2>
+        <p>Immatriculation : @responseGetVehicule.Lists[0].VEHPR_Immatriculation</p>
+        <p>Nombre de place : @responseGetVehicule.Lists[0].VEHPR_NombrePlace</p>
+        <p>Norme Euro : @responseGetVehicule.Lists[0].VEHPR_NormeEuro</p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Localité de départ</th>
+                <th scope="col">Date de départ</th>
+                <th scope="col">Localité de d'arrivé</th>
+                <th scope="col">Date d'arrivé</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var annonceProfile in responseAnnonce.Lists)
+            {
+                <tr>
+                    <td>@annonceProfile.ANNPR_LocaliteDepart</td>
+                    <td>@annonceProfile.ANNPR_DateDepart</td>
+                    <td>@annonceProfile.ANNPR_LocaliteArrive</td>
+                    <td>@annonceProfile.ANNPR_DateArrive</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <h3>Options</h3>
+        <p>Fumeur : @responseAnnonce.Lists[0].ANN_OptFumeur</p>
+        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAnimaux</p>
+        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAutoroute</p>
+    </div>
+
+    if (confirme != true)
+    {
+        <div class="align-middle">
+            <button class="btn btn-warning"><a @onclick="@(() => CreateReservation())" href="/">Soumettre vôtre demande</a></button> 
+        </div>
+    }
+
+    <div class="align-middle">
+        <button class="btn btn-warning"><a href="/">Page d'accueil</a></button> 
+    </div>
+}
+

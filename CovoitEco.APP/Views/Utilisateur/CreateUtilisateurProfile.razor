@@ -1,0 +1,34 @@
+﻿@inherits CovoitEco.APP.Components.Utilisateur.SignUpUtilisateurComponent
+
+<div class="row">
+    <div class="col">
+
+        <EditForm Model=@requestUtilisateurFormular OnValidSubmit="CreateUtilisateurProfile">
+            <DataAnnotationsValidator/>
+
+            <div class="form-group">
+                <label for="email">Adresse mail</label>
+                <InputText @bind-Value="requestUtilisateurFormular.email" class="form-control"/>
+                   <ValidationMessage For="() => requestUtilisateurFormular.email"/>
+            </div>
+            <div class="form-group">
+                <label for="username">Prénom</label>
+                <InputText @bind-Value="requestUtilisateurFormular.username" class="form-control"/>
+                <ValidationMessage For="@(() => requestUtilisateurFormular.username)"/>
+            </div>
+            <div class="form-group">
+                <label for="family_name">Nom</label>
+                <InputText @bind-Value="requestUtilisateurFormular.family_name" class="form-control"/>
+                 <ValidationMessage For="() => requestUtilisateurFormular.family_name"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <InputText @bind-Value="requestUtilisateurFormular.password" class="form-control"/>
+                     <ValidationMessage For="() => requestUtilisateurFormular.password"/>
+            </div>
+            <button class="btn btn-primary" type="submit">Créer un utilisateur</button>
+        </EditForm>
+    </div>
+</div>
+
+

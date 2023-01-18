@@ -1,0 +1,72 @@
+﻿@using CovoitEco.APP.Model.Models
+@using CovoitEco.APP.Extensions
+@inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
+
+
+<div class="row">
+    <div class="col">
+
+        <EditForm Model=@requestAnnonceProfileFormular OnValidSubmit="CreateAnnonceProfile">
+            <div class="form-group">
+                <label for="ANN_VilleDepart">VilleDepart</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_VilleDepart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_RueDepart">RueDepart</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_RueDepart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_NumeroDepart">NumeroDepart</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_NumeroDepart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_CodePostalDepart">CodePostalDepart</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_CodePostalDepart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_VilleArrive">VilleArrive</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_VilleArrive" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_RueArrive">RueArrive</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_RueArrive" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_NumeroArrive">NumeroArrive</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_NumeroArrive" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_CodePostalArrive">CodePostalArrive</label>
+                <InputText @bind-Value="requestAnnonceProfileFormular.ANN_CodePostalArrive" class="form-control" />
+            </div>
+            <div class="form-group row">
+                <label for="ANN_DateDepart" class="col-sm-3">DateDepart</label>
+                <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceProfileFormular.ANN_DateDepart" />
+            </div>
+            <div class="form-group row">
+                <label for="ANN_DateArrive" class="col-sm-3">DateArrive</label>
+                <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceProfileFormular.ANN_DateArrive" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_OptAutoroute">OptAutoroute</label>
+                <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAutoroute" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_OptAnimaux">OptAnimaux</label>
+                <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAnimaux" />
+            </div>
+            <div class="form-group">
+                <label for="ANN_OptFumeur">OptFumeur</label>
+                <InputCheckbox @bind-Value=requestAnnonceProfileFormular.ANN_OptFumeur />
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/CompteAnnonce">Retourner vers la liste</a>
+</div>
+
+
+

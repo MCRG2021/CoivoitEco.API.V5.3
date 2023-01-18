@@ -1,0 +1,23 @@
+﻿@page "/CompteReservation"
+@using CovoitEco.APP.Views.Reservation
+@attribute [Authorize]
+
+<PageTitle>Reservations</PageTitle>
+
+<h1>Reservations</h1>
+
+<div class="row">
+    <div class="col-md-10">
+        <CompteMenu/>
+    </div>
+    <div class="col-md-2">
+        @*Place for other item*@
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <GetAllReservationUserProfile />
+    </div>
+</div>
+
+

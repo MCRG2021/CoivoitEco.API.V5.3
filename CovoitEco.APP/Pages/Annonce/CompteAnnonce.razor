@@ -1,0 +1,44 @@
+﻿@page "/CompteAnnonce"
+@using CovoitEco.APP.Views.Annonce
+@using Blazored.Toast.Configuration
+@*toast*@
+@inject IToastService toastService
+
+<PageTitle>Annonces</PageTitle>
+
+@*<div class="col-sm-1 p-3">
+    </div>*@
+
+<h1>Annonces</h1>
+
+<div class="row">
+    <div class="col-md-10">
+        @* <div class="container p-5 my-5 bg-dark text-white">
+            <CompteMenu/>
+            </div>*@
+        <CompteMenu />
+    </div>
+    <div class="col-md-2">
+        <a href="/Publier" class="btn btn-secondary">Publier une annonce</a>
+    </div>
+</div>
+
+@*toast*@
+<div>
+    <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("Info message"))">Info toast</button>
+    <button class="btn btn-success" @onclick="@(() => toastService.ShowSuccess("Success message"))">Info toast</button>
+</div>
+
+@*alerte*@
+@*<div class="col-sm-1 p-3 alert alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+    </div>*@
+
+<div class="row">
+    <div class="col">
+        <div class="text-center">
+            <GetAllAnnonceProfileView />
+        </div>
+    </div>
+</div>
+

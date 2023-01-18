@@ -1,0 +1,73 @@
+﻿@inherits CovoitEco.APP.Components.Reservation.DetailReservationComponent
+
+@if (responseGetReservationUser == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div>
+        <h2>Auteur</h2>
+        <p>Nom : @responseGetReservationUser.Lists[0].RES_ANN_AnnonceurNom</p>
+        <p>Prénom : @responseGetReservationUser.Lists[0].RES_ANN_AnnonceurPrenom</p>
+    </div>
+
+    <div>
+        <h2>Vehicule</h2>
+        <p>Immatriculation : @responseGetReservationUser.Lists[0].RES_ANN_VEH_VehImmatriculation</p>
+    </div>
+
+    <div>
+        <h2>Prix</h2>
+        <p>Euro : @responseGetReservationUser.Lists[0].RES_ANN_Prix</p>
+        @if (@responseGetReservationUser.Lists[0].RES_FACT_FactureResolus == true)
+        {
+            <p>Facture : en ordre</p>
+        }
+        else
+        {
+            <p>Facture : a payer</p>
+        }
+    </div>
+
+    <div>
+        <h2>Statut</h2>
+        <p>Statut annonce : @responseGetReservationUser.Lists[0].RES_ANN_StatutLibelle</p>
+        <p>Statut reservation : @responseGetReservationUser.Lists[0].RES_FACT_StatutLibelle</p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Localité de départ</th>
+                <th scope="col">Date de départ</th>
+                <th scope="col">Localité de d'arrivé</th>
+                <th scope="col">Date d'arrivé</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservationUserProfile in responseGetReservationUser.Lists)
+            {
+                <tr>
+                    <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
+                    <td>@reservationUserProfile.RES_ANN_DateDepart</td>
+                    <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
+                    <td>@reservationUserProfile.RES_ANN_DateArrive</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <h3>Options</h3>
+        <p>Fumeur : @responseGetReservationUser.Lists[0].RES_ANN_OptFumeur</p>
+        <p>Animaux : @responseGetReservationUser.Lists[0].RES_ANN_OptAnimaux</p>
+        <p>Animaux : @responseGetReservationUser.Lists[0].RES_ANN_OptAutoroute</p>
+    </div>
+
+
+    <div class="align-middle">
+        <button class="btn btn-warning"><a href="/CompteReservation">Retour à la page précèdente</a></button> 
+    </div>
+}

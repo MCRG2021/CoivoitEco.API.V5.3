@@ -1,0 +1,14 @@
+﻿@inherits CovoitEco.APP.Components.Utilisateur.UtilisateurComponent
+
+@if (responseGetUtilisateurProfile  == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        <p>Nom : @responseGetUtilisateurProfile.Lists[0].UTL_Nom</p>
+        <p>Prénom : @responseGetUtilisateurProfile.Lists[0].UTL_Prenom</p>
+        <p>Mail: @responseGetUtilisateurProfile.Lists[0].UTL_Mail</p>
+    </div>
+}

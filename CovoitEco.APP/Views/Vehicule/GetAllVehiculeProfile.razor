@@ -1,0 +1,33 @@
+﻿@inherits CovoitEco.APP.Components.Vehicule.VehiculeComponent
+
+@if (responseGetAllVehicule  == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h3>Mes vehicules</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Immatriculation</th>
+            <th scope="col">Marque</th>
+            <th scope="col">Modèle</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var vehiculeProfile in responseGetAllVehicule.Lists )
+        {
+            <tr>
+                <td>@vehiculeProfile.VEHPR_Immatriculation</td>
+                <td>@vehiculeProfile.VEHPR_Marque</td>
+                <td>@vehiculeProfile.VEHPR_Modele</td>
+                <td class="align-middle">
+                    <button class="btn btn-warning"><a href="">Définir comme vehicule courrant</a></button> @*not implemented for the demonstration*@
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

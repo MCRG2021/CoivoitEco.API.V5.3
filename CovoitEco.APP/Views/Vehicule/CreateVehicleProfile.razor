@@ -1,0 +1,63 @@
+﻿@inherits CovoitEco.APP.Components.Vehicule.VehiculeComponent
+
+<div class="row">
+    <div class="col">
+
+        <EditForm Model=@resquestVehiculeProfileFormular OnValidSubmit="CreateVehiculeProfile">
+            <div class="form-group">
+                <label for="VEH_Immatriculation">Immatricualtion</label>
+                <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Immatriculation" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="VEH_Marque">Marque</label>
+                <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Marque" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="VEH_Modele">Modèle</label>
+                <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Modele" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="VEH_Couleur">Couleur</label>
+                <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Couleur" class="form-control" />
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="VEH_NombrePlace">Nombre de place</label>
+                    <InputSelect @bind-Value="resquestVehiculeProfileFormular.VEH_NombrePlace">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </InputSelect>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="VEH_NormeEuro">Norme Euro</label>
+                    <InputSelect @bind-Value="resquestVehiculeProfileFormular.VEH_NormeEuro">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </InputSelect>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/CompteVehicule">Retourner à la liste</a>
+</div>
+
+
+

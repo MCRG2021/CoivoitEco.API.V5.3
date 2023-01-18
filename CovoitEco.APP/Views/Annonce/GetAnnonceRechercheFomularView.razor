@@ -1,0 +1,26 @@
+﻿@using CovoitEco.APP.Extensions
+@*@inherits CovoitEco.APP.Components.Annonce.RechercheAnnonceComponent*@
+@inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
+
+
+<div class="row">
+    <div class="col">
+
+        <EditForm Model=@requestAnnonceRechercheFormular>
+            <div class="form-group row">
+                <label for="departureDate" class="col-sm-3">DateDepart</label>
+                <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceRechercheFormular.departureDate" />
+            </div>
+            <div class="form-group">
+                <label for="departureCity">VilleDepart</label>
+                <InputText @bind-Value="requestAnnonceRechercheFormular.departureCity" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="arrivalCity">VilleArrive</label>
+                <InputText @bind-Value="requestAnnonceRechercheFormular.arrivalCity" class="form-control" />
+            </div>
+            <button class="btn btn-secondary" type="submit"><a href="/ResultatRecherche" class="btn btn-secondary">Rechercher</a></button> 
+        </EditForm>
+    </div>
+</div>
+

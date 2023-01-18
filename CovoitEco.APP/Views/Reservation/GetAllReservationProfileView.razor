@@ -1,0 +1,71 @@
+﻿@inherits CovoitEco.APP.Components.Annonce.GestionAnnonce
+
+@if (responseAnnonce == null || responseGetVehicule == null || responseReservationProfile == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+  @*  <div>
+        <p>Nom : @responseAnnonce.Lists[0].ANNPR_AnnonceurNom</p>
+        <p>Prénom : @responseAnnonce.Lists[0].ANNPR_AnnonceurPrenom</p>
+    </div>*@
+
+    <div>
+        <h2>@responseGetVehicule.Lists[0].VEHPR_Marque @responseGetVehicule.Lists[0].VEHPR_Modele</h2>
+        <p>Immatriculation : @responseGetVehicule.Lists[0].VEHPR_Immatriculation</p>
+        <p>Nombre de place : @responseGetVehicule.Lists[0].VEHPR_NombrePlace</p>
+        <p>Norme Euro : @responseGetVehicule.Lists[0].VEHPR_NormeEuro</p>
+        <p>Fumeur : @responseAnnonce.Lists[0].ANN_OptFumeur</p>
+        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAnimaux</p>
+        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAutoroute</p>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var reservationProfile in responseReservationProfile.Lists)
+        {
+            <tr>
+                <td>@reservationProfile.RESPR_Nom</td>
+                <td>@reservationProfile.RESPR_Prenom</td>
+                @if(@reservationProfile.RESPR_StatutLibelle == "Confirme" && @reservationProfile.RESPR_FactureResolus == true)
+                {
+                <td class="align-middle">
+                    <button class="btn btn-warning"  @onclick="@(() => UpdateConfirmePayment(@reservationProfile.RESPR_Id))" >Confirmer le paiement</button> 
+                </td>
+                }
+                else
+                {
+                <td class="align-middle">
+                    <button class="btn btn-warning"  disabled>Confirmer le paiement</button> 
+                </td>
+                }
+                @if(@reservationProfile.RESPR_StatutLibelle == "EnAttente")
+                {
+                <td class="align-middle">
+                    <button class="btn btn-warning"  @onclick="@(() => UpdateAccepterReservation(@reservationProfile.RESPR_Id))" >Accepter la demande</button> 
+                </td>
+                }
+                else
+                {
+                <td class="align-middle">
+                    <button class="btn btn-warning"  disabled>Accepter la demande</button> 
+                </td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <div class="align-middle">
+        <button class="btn btn-warning"><a href="/CompteAnnonce">Page précédente</a></button>
+    </div>
+
+}
