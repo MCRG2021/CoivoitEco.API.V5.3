@@ -2,13 +2,18 @@
 
 @if (responseGetUtilisateurProfile  == null)
 {
-    <p><em>Loading...</em></p>
+    <div class="container pt-5">
+        <div class="spinner-border text-primary"></div>
+        <p><em>Loading...</em></p>
+    </div>
 }
 else
 {
-    <div>
-        <p>Nom : @responseGetUtilisateurProfile.Lists[0].UTL_Nom</p>
-        <p>Prénom : @responseGetUtilisateurProfile.Lists[0].UTL_Prenom</p>
-        <p>Mail: @responseGetUtilisateurProfile.Lists[0].UTL_Mail</p>
+    <div class="container pt-5">
+        <ul class="list-group">
+            <li class="list-group-item">Nom : @responseGetUtilisateurProfile.Lists[0].UTL_Nom</li>
+            <li class="list-group-item">Prénom : @responseGetUtilisateurProfile.Lists[0].UTL_Prenom</li>
+            <li class="list-group-item">Mail : @responseGetUtilisateurProfile.Lists[0].UTL_Mail</li>
+        </ul>
     </div>
 }

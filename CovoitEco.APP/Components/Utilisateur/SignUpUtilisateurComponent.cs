@@ -6,7 +6,7 @@ namespace CovoitEco.APP.Components.Utilisateur
     {
         protected async Task CreateUtilisateurProfile()
         {
-            await UtilisateurCommands.CreateUtilisateur(requestUtilisateurFormular, AccessToken);
+            await UtilisateurCommands.CreateUtilisateur(requestUtilisateurFormular); // accestoken
         }
     }
 }

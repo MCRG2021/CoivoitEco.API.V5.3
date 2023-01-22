@@ -1,38 +1,38 @@
 ﻿@inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
-@*toast*@
-@inject IToastService toastService 
 
-@if (responseAnnonce  == null)
+@if (responseAnnonce == null)
 {
-    <div class="spinner-border text-primary"></div>
-    <p><em>Loading...</em></p>
-    
+    <div class="container pt-5">
+        <div class="spinner-border text-primary"></div>
+        <p><em>Loading...</em></p>
+    </div>
 }
 else
 {
-    toastService.ShowSuccess("Info message");
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Date de publication</th>
-            <th scope="col">Localité de départ</th>
-            <th scope="col">Localité d'arrivé</th>
-            <th scope="col">Statut</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var annonceProfile in responseAnnonce.Lists )
-        {
+    <div class="container pt-5">
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td>@annonceProfile.ANNPR_DatePublication</td>
-                <td>@annonceProfile.ANNPR_LocaliteDepart</td>
-                <td>@annonceProfile.ANNPR_LocaliteArrive</td>
-                <td>@annonceProfile.ANNPR_Statut</td>
-                <td class="align-middle">
-                   <a @onclick="@(() => UpdateIdAnnonce(annonceProfile.ANNPR_Id))" href="/GestionAnnonce" class="btn btn-secondary">Administrer</a> @*to do (type get)*@
-                </td>
+                <th scope="col">Date de publication</th>
+                <th scope="col">Localité de départ</th>
+                <th scope="col">Localité d'arrivé</th>
+                <th scope="col">Statut</th>
             </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var annonceProfile in responseAnnonce.Lists)
+            {
+                <tr>
+                    <td>@annonceProfile.ANNPR_DatePublication</td>
+                    <td>@annonceProfile.ANNPR_LocaliteDepart</td>
+                    <td>@annonceProfile.ANNPR_LocaliteArrive</td>
+                    <td>@annonceProfile.ANNPR_Statut</td>
+                    <td class="align-middle">
+                        <a @onclick="@(() => UpdateIdAnnonce(annonceProfile.ANNPR_Id))" href="/GestionAnnonce" class="btn btn-secondary">Administrer</a> @*to do (type get)*@
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 }

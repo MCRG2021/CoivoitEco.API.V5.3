@@ -29,24 +29,26 @@ namespace CovoitEco.APP.Service.Annonce.Commands
         #endregion
 
 
-        public async Task CreateAnnonce(AnnonceProfileFormular formular)
+        public async Task CreateAnnonce(AnnonceProfileFormular formular, string token)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var postAnnonce = await _httpClient.PostAsJsonAsync("https://localhost:7197/api/Annonce/CreateAnnonce", formular);
                 if (!postAnnonce.IsSuccessStatusCode)
                     throw new Exception();
             });
         }
 
-        public async Task UpdateStatutAnnonce(int idAnn)
+        public async Task UpdateStatutAnnonce(int idAnn, string token)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var postAnnonce = await _httpClient.PutAsJsonAsync("https://localhost:7197/api/Annonce/UpdateStatutAnnonce?id=" + idAnn, idAnn);
                 if (!postAnnonce.IsSuccessStatusCode)
                     throw new Exception();

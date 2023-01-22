@@ -1,14 +1,9 @@
 using Blazored.Toast;
-using CoiviteEco.APP.Service.Annonce.Queries;
 using CovoitEco.APP;
 using CovoitEco.APP.Extensions;
-using CovoitEco.APP.Service.Annonce.Commands;
-using CovoitEco.APP.Service.Annonce.Queries;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-//using PeterLeslieMorris.Blazor.Validation;
-//using PeterLeslieMorris.Blazor.FluentValidation;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -31,7 +26,6 @@ builder.Services.AddOidcAuthentication(options =>
     options.ProviderOptions.ResponseType = "code";
     options.ProviderOptions.AdditionalProviderParameters.Add("audience", builder.Configuration["Auth0:Audience"]);
 });
-
 
 await builder.Build().RunAsync();
 

@@ -28,14 +28,15 @@ namespace CovoitEco.APP.Service.Annonce.Queries
 
         #endregion
 
-        public async Task<AnnonceProfileVm> GetAllAnnonceProfile(int id)
+        public async Task<AnnonceProfileVm> GetAllAnnonceProfile(int id, string token)
         {
             //var httpResponse = "";
 
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/Annonce/GetAllAnnonceProfile?id=" + id);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
@@ -44,14 +45,14 @@ namespace CovoitEco.APP.Service.Annonce.Queries
             });
         }
 
-        public async Task<AnnonceProfileVm> GetAnnonceRecherche(DateTime departureDate, string departureCity, string arrivalCity)
+        public async Task<AnnonceProfileVm> GetAnnonceRecherche(DateTime departureDate, string departureCity, string arrivalCity, string token) 
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/Annonce/GetAnnonceRecherche?departureDate=" + departureDate.Year + "-" + departureDate.Month + "-" + departureDate.Day + "&departureCity=" + departureCity + "&arrivalCity=" + arrivalCity);
-                //var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/Annonce/GetAnnonceRecherche?departureDate=2022-12-10&departureCity=Brugge&arrivalCity=Namur");
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 var annoncesProfile = JsonConvert.DeserializeObject<AnnonceProfileVm>(content);
@@ -59,12 +60,13 @@ namespace CovoitEco.APP.Service.Annonce.Queries
             });
         }
 
-        public async Task<AnnonceProfileVm> GetAnnonceProfile(int id)
+        public async Task<AnnonceProfileVm> GetAnnonceProfile(int id, string token)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/Annonce/GetAnnonceProfile?id=" + id);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();

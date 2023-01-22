@@ -2,40 +2,49 @@
 
 @if (responseGetAllReservationUser == null)
 {
-    <p><em>Loading...</em></p>
+    <div class="container pt-5">
+        <div class="spinner-border text-primary"></div>
+        <p><em>Loading...</em></p>
+    </div>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Date de départ</th>
-                <th scope="col">Localité de départ</th>
-                <th scope="col">Date d'arrivé</th>
-                <th scope="col">Localité d'arrivé</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Statut</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var reservationUserProfile in responseGetAllReservationUser.Lists)
-            {
+    <div class="container pt-5">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@reservationUserProfile.RES_ANN_DateDepart</td>
-                    <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
-                    <td>@reservationUserProfile.RES_ANN_DateArrive</td>
-                    <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
-                    <td>@reservationUserProfile.RES_ANN_Prix</td>
-                    <td>@reservationUserProfile.RES_ANN_StatutLibelle</td>
-                    <td class="align-middle">
-                        <button class="btn btn-warning"><a @onclick="@(() => UpdateIdReservation(reservationUserProfile.RES_Id))" href="/DetailReservation">Detail</a></button>
-                        @if (@reservationUserProfile.RES_FACT_FactureResolus == false)
-                        {
-                            <button class="btn btn-warning" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</button>
-                        }
-                    </td>
+                    <th scope="col">Date de départ</th>
+                    <th scope="col">Localité de départ</th>
+                    <th scope="col">Date d'arrivé</th>
+                    <th scope="col">Localité d'arrivé</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Statut</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var reservationUserProfile in responseGetAllReservationUser.Lists)
+                {
+                    <tr>
+                        <td>@reservationUserProfile.RES_ANN_DateDepart</td>
+                        <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
+                        <td>@reservationUserProfile.RES_ANN_DateArrive</td>
+                        <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
+                        <td>@reservationUserProfile.RES_ANN_Prix</td>
+                        <td>@reservationUserProfile.RES_ANN_StatutLibelle</td>
+                        <td class="align-middle">
+                            <a @onclick="@(() => UpdateIdReservation(reservationUserProfile.RES_Id))" href="/DetailReservation" class="btn btn-primary">Detail</a> |
+                            @if (@reservationUserProfile.RES_FACT_FactureResolus == false)
+                            {
+                                <a class="btn btn-primary" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary" disabled>Payer</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }

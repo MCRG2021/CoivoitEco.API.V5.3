@@ -12,8 +12,8 @@ namespace CovoitEco.APP.Components.Annonce
     {
         protected override async Task OnInitializedAsync()
         {
-            responseAnnonce = await AnnonceQueries.GetAnnonceProfile(idAnnonce);
-            responseGetVehicule = await vehiculeQueries.GetVehicule(idAnnonce);
+            responseAnnonce = await AnnonceQueries.GetAnnonceProfile(idAnnonce, AccessToken);
+            responseGetVehicule = await vehiculeQueries.GetVehicule(idAnnonce, AccessToken);
 
             // Test if er is already a reservation for this annonce
             responseGetAllReservationUser = await ReservationQueries.GetAllReservationUserProfile(idUser, AccessToken);
@@ -22,18 +22,18 @@ namespace CovoitEco.APP.Components.Annonce
 
         protected async Task GetIdReservation()
         {
-            idReservation = await ReservationQueries.GetIdReservationUserProfile(idAnnonce, idUser);
+            idReservation = await ReservationQueries.GetIdReservationUserProfile(idAnnonce, idUser, AccessToken);
         }
 
         protected async Task CreateReservation()
         {
             requestReservationFormular.RES_UTL_Id = idUser;
             requestReservationFormular.RES_ANN_Id = idAnnonce;
-            await ReservationCommands.CreateReservation(requestReservationFormular);
+            await ReservationCommands.CreateReservation(requestReservationFormular, AccessToken);
             await GetIdReservation(); 
             if (!idReservation.Equals(null))
             {
-                await FactureCommands.CreateFacture(idReservation);
+                await FactureCommands.CreateFacture(idReservation, AccessToken);
             }
             else
             {

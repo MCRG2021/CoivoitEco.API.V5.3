@@ -9,13 +9,13 @@ namespace CovoitEco.APP.Components.Vehicule
     {
         protected override async Task OnInitializedAsync()
         {
-            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser); // Id user current 
-            responseGetAllVehicule = await vehiculeQueries.GetAllVehiculeProfile(idUser);
+            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser, AccessToken); // Id user current 
+            responseGetAllVehicule = await vehiculeQueries.GetAllVehiculeProfile(idUser, AccessToken);
         }
 
         protected async Task CreateVehiculeProfile()
         {
-             await vehiculeCommands.CreateVehiculeProfile(resquestVehiculeProfileFormular);
+             await vehiculeCommands.CreateVehiculeProfile(resquestVehiculeProfileFormular, AccessToken);
         }
     }
 }

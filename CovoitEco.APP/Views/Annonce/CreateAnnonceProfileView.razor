@@ -1,72 +1,97 @@
 ﻿@using CovoitEco.APP.Model.Models
 @using CovoitEco.APP.Extensions
 @inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
+@inject IToastService toastService
 
-
-<div class="row">
-    <div class="col">
-
-        <EditForm Model=@requestAnnonceProfileFormular OnValidSubmit="CreateAnnonceProfile">
+<div class="container p-lg-5">
+    <div>
+        <EditForm Model=@requestAnnonceProfileFormular OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+            <DataAnnotationsValidator />
             <div class="form-group">
-                <label for="ANN_VilleDepart">VilleDepart</label>
+                <label for="ANN_VilleDepart" class="form-label fw-bold fs-5">Ville de départ</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_VilleDepart" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_VilleDepart" />
             </div>
             <div class="form-group">
-                <label for="ANN_RueDepart">RueDepart</label>
+                <label for="ANN_RueDepart" class="form-label fw-bold fs-5">Rue de départ</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_RueDepart" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_RueDepart" />
             </div>
             <div class="form-group">
-                <label for="ANN_NumeroDepart">NumeroDepart</label>
+                <label for="ANN_NumeroDepart" class="form-label fw-bold fs-5">Numéro de Départ</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_NumeroDepart" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_NumeroDepart" />
             </div>
             <div class="form-group">
-                <label for="ANN_CodePostalDepart">CodePostalDepart</label>
+                <label for="ANN_CodePostalDepart" class="form-label fw-bold fs-5">Code postal de d"part</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_CodePostalDepart" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_CodePostalDepart" />
             </div>
             <div class="form-group">
-                <label for="ANN_VilleArrive">VilleArrive</label>
+                <label for="ANN_VilleArrive" class="form-label fw-bold fs-5">Ville d'arrivé</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_VilleArrive" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_VilleArrive" />
             </div>
             <div class="form-group">
-                <label for="ANN_RueArrive">RueArrive</label>
+                <label for="ANN_RueArrive" class="form-label fw-bold fs-5">Rue d'arrivé</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_RueArrive" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_RueArrive" />
             </div>
             <div class="form-group">
-                <label for="ANN_NumeroArrive">NumeroArrive</label>
+                <label for="ANN_NumeroArrive" class="form-label fw-bold fs-5">Numéro d'arrive</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_NumeroArrive" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_NumeroArrive" />
             </div>
             <div class="form-group">
-                <label for="ANN_CodePostalArrive">CodePostalArrive</label>
+                <label for="ANN_CodePostalArrive" class="form-label fw-bold fs-5">Code postal d'arrive</label>
                 <InputText @bind-Value="requestAnnonceProfileFormular.ANN_CodePostalArrive" class="form-control" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_VilleDepart" />
             </div>
             <div class="form-group row">
-                <label for="ANN_DateDepart" class="col-sm-3">DateDepart</label>
+                <label for="ANN_DateDepart" class="form-label fw-bold fs-5">Date de départ</label>
                 <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceProfileFormular.ANN_DateDepart" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_DateDepart" />
             </div>
             <div class="form-group row">
-                <label for="ANN_DateArrive" class="col-sm-3">DateArrive</label>
+                <label for="ANN_DateArrive" class="form-label fw-bold fs-5">Date d'arrivé</label>
                 <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceProfileFormular.ANN_DateArrive" />
+                <ValidationMessage For="() => requestAnnonceProfileFormular.ANN_DateArrive" />
             </div>
-            <div class="form-group">
-                <label for="ANN_OptAutoroute">OptAutoroute</label>
-                <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAutoroute" />
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ANN_OptAutoroute" class="form-label fw-bold fs-5">Autoroute</label>
+                    <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAutoroute" />
+                </div>
+                <div class="form-group col">
+                    <label for="ANN_OptAnimaux" class="form-label fw-bold fs-5">Animaux</label>
+                    <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAnimaux" />
+                </div>
+                <div class="form-group col">
+                    <label for="ANN_OptFumeur" class="form-label fw-bold fs-5">Fumeur</label>
+                    <InputCheckbox @bind-Value=requestAnnonceProfileFormular.ANN_OptFumeur />
+                </div>
             </div>
-            <div class="form-group">
-                <label for="ANN_OptAnimaux">OptAnimaux</label>
-                <InputCheckbox @bind-Value="requestAnnonceProfileFormular.ANN_OptAnimaux" />
+            <div class="container pt-2">
+                <button class="btn btn-primary" type="submit">Publier</button>
             </div>
-            <div class="form-group">
-                <label for="ANN_OptFumeur">OptFumeur</label>
-                <InputCheckbox @bind-Value=requestAnnonceProfileFormular.ANN_OptFumeur />
-            </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
         </EditForm>
     </div>
 </div>
 
-<div>
-    <a href="/CompteAnnonce">Retourner vers la liste</a>
+<div class="container pt-3 text-center">
+    <a class="btn btn-primary" href="/CompteAnnonce">Retourner vers la liste</a>
 </div>
 
 
+@code {
+    private void HandleInvalidSubmit()
+    {
+        toastService.ShowError("Erreur");
+    }
 
+    private async void HandleValidSubmit()
+    {
+        await CreateAnnonceProfile();
+        toastService.ShowSuccess("Succès");
+    }
+}

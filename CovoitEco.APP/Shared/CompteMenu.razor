@@ -1,27 +1,40 @@
-﻿
+﻿@inject IToastService toastService 
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <NavLink class="nav-link" href="compteReservation">
+                <NavLink class="nav-link" href="compteReservation" @onclick="@(() => HandleValidSubmit())">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Reservations
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="nav-link" href="compteAnnonce">
+                <NavLink class="nav-link" href="compteAnnonce" @onclick="@(() => HandleValidSubmit())">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Annonces
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="nav-link" href="compteUtilisateur">
+                <NavLink class="nav-link" href="compteUtilisateur" @onclick="@(() => HandleValidSubmit())">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Profil
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="nav-link" href="compteVehicule">
+                <NavLink class="nav-link" href="compteVehicule" @onclick="@(() => HandleValidSubmit())">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Vehicules
                 </NavLink>
             </li>
         </ul>
     </div>
 </nav>
+
+@code {
+    private void HandleInvalidSubmit()
+    {
+        toastService.ShowError("Erreur");
+    }
+
+    private async void HandleValidSubmit()
+    {
+        toastService.ShowSuccess("Succès");
+    }
+}

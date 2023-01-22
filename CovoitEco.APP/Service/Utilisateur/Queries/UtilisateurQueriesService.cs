@@ -1,4 +1,5 @@
-﻿using CovoitEco.APP.Model.Models;
+﻿using System.Net.Http.Headers;
+using CovoitEco.APP.Model.Models;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
@@ -26,12 +27,13 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
 
         #endregion
 
-        public async Task<UserProfileVm> GetUtilisateurPofile(int idUser)
+        public async Task<UserProfileVm> GetUtilisateurPofile(int idUser, string token)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse =
                     await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserProfile?id=" + idUser);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
@@ -41,12 +43,13 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
             });
         }
 
-        public async Task<int> GetIdUtilisateurPofile(string mail)
+        public async Task<int> GetIdUtilisateurPofile(string mail, string token)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse =
                     await _httpClient.GetAsync("https://localhost:7197/api/User/GetIdUserProfile?mail=" + mail);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
@@ -60,8 +63,9 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse =
                     await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserInfo?accessToken=" + token);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();

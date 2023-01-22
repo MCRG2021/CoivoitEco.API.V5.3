@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Blazored.Toast.Services;
 using CoiviteEco.APP.Service.Annonce.Queries;
 using CovoitEco.APP.Model.Models;
 using CovoitEco.APP.Service.Annonce.Commands;
@@ -78,7 +79,7 @@ namespace CovoitEco.APP.Components
 
         public static AnnonceRechercheFormular requestAnnonceRechercheFormular { get; set; } = new AnnonceRechercheFormular();  // static 
 
-        public VehiculeProfileFormular resquestVehiculeProfileFormular { get; set; } = new VehiculeProfileFormular() { VEH_UTL_Id = idUser };
+        public VehiculeProfileFormular resquestVehiculeProfileFormular { get; set; } = new VehiculeProfileFormular() { VEH_UTL_Id = idUser, VEH_NombrePlace = 1,VEH_NormeEuro = 0 };
 
         public UserFormular requestUtilisateurFormular { get; set; } = new UserFormular();
 
@@ -139,7 +140,7 @@ namespace CovoitEco.APP.Components
 
         protected async Task SetIdVehCurrent()
         {
-            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser); 
+            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser, AccessToken); 
             if (responseGetVehicule.Lists.Count == 0)
             {
                 throw new Exception(); // to edit (message you have no vehicule profile)
@@ -153,7 +154,7 @@ namespace CovoitEco.APP.Components
         protected async Task SetIdUser()
         {
             ResponseUserInfo = await UtilisateurQueries.GetUtilisateurInfo(AccessToken);
-            idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name); // email for auth0
+            idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name, AccessToken); // email for auth0
         }
 
         // use to tested a token access 

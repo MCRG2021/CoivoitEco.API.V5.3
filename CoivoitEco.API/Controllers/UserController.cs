@@ -28,27 +28,6 @@ namespace CoivoitEco.API.Controllers
             _client = client;
         }
 
-        // to delete
-        ////[Authorize("write:users")] 
-        //[HttpPost("[action]")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //public async Task<IActionResult> CreateUser(User user)
-        //{
-        //    try
-        //    {
-        //        _logger.LogInformation("CreateUser");
-        //        await _commandsUserService.CreateUser(user);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _logger.LogError("Request CreateUser fail");
-        //        throw;
-        //    }
-        //    return Ok();
-        //}
-
         //[Authorize("write:users")] 
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]

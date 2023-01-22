@@ -1,4 +1,5 @@
-﻿@using CovoitEco.APP.Views.Utilisateur 
+﻿@using CovoitEco.APP.Views.Utilisateur
+@inherits CovoitEco.APP.Components.Utilisateur.SignUpUtilisateurComponent
 
 <CascadingAuthenticationState> 
     <Router AppAssembly="@typeof(App).Assembly">
@@ -8,10 +9,17 @@
                     <p>Determining session state, please wait...</p>
                 </Authorizing>
                 <NotAuthorized>
-                    <h1>Veuiller créer un compte ou vous loger</h1>
-                    <p>You're not authorized to reach this page. You need to log in.</p>
-                    <div>
-                        <CreateUtilisateurProfile />
+                    <div class=" container pt-5 bg-dark text-white">
+                        <h1 class="fw-bolder">Bienvenue sur CovoitEco</h1>
+                        <p class="fs-6">Veuiller créer un compte oû vous loger.</p>
+                    </div>
+                    <div class="container pt-2 text-center">
+                        <img src="img/winding-road-g5edc8face_1920.jpg" alt="Card image" style="" class="img-fluid">
+                    </div>
+                    <div class="container pt-3 text-center ">
+                        <a href="/CreateUtilisateur" class="btn btn-primary btn-lg">S'inscrire</a>
+                    </div>
+                    <div class="container pt-3">
                     </div>
                 </NotAuthorized>
             </AuthorizeRouteView>
@@ -25,3 +33,5 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState> 
+
+

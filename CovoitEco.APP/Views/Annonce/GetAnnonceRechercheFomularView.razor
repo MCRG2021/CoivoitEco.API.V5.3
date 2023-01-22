@@ -1,26 +1,50 @@
 ﻿@using CovoitEco.APP.Extensions
-@*@inherits CovoitEco.APP.Components.Annonce.RechercheAnnonceComponent*@
 @inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
+@inject IToastService toastService
 
-
-<div class="row">
-    <div class="col">
-
+@*This is not a create formular*@
+<div class="container pt-5 mt-3 justify-content-center">
+    <div class="row mb-3 mt-3">
         <EditForm Model=@requestAnnonceRechercheFormular>
-            <div class="form-group row">
-                <label for="departureDate" class="col-sm-3">DateDepart</label>
-                <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceRechercheFormular.departureDate" />
+            <DataAnnotationsValidator />
+            <div class="form-group mb-3">
+                <label for="departureDate" class="form-label fw-bold fs-5">Date de Départ</label>
+                <InputDateTime id="createdDate" class="form-control col-sm-8" @bind-Value="requestAnnonceRechercheFormular.departureDate"/>
+                <ValidationMessage For="() => requestAnnonceRechercheFormular.departureDate" />
             </div>
-            <div class="form-group">
-                <label for="departureCity">VilleDepart</label>
-                <InputText @bind-Value="requestAnnonceRechercheFormular.departureCity" class="form-control" />
+            <div class="form-group mb-3">
+                <label for="departureCity" class="form-label fw-bold fs-5">Ville de départ</label>
+                <InputText @bind-Value="requestAnnonceRechercheFormular.departureCity" class="form-control"/>
+                <ValidationMessage For="() => requestAnnonceRechercheFormular.departureCity" />
             </div>
-            <div class="form-group">
-                <label for="arrivalCity">VilleArrive</label>
-                <InputText @bind-Value="requestAnnonceRechercheFormular.arrivalCity" class="form-control" />
+            <div class="form-group mb-3">
+                <label for="arrivalCity" class="form-label fw-bold fs-5">Ville d'arrivé</label>
+                <InputText @bind-Value="requestAnnonceRechercheFormular.arrivalCity" class="form-control"/>
+                <ValidationMessage For="() => requestAnnonceRechercheFormular.arrivalCity" />
             </div>
-            <button class="btn btn-secondary" type="submit"><a href="/ResultatRecherche" class="btn btn-secondary">Rechercher</a></button> 
+            <div class="container pt-2 mb-3 text-center fs-3">
+                @if (requestAnnonceRechercheFormular.departureCity != null && requestAnnonceRechercheFormular.arrivalCity != null)
+                {
+                    <a href="/ResultatRecherche" class="btn btn-primary btn-lg" @onclick="@(() => HandleValidSubmit())">Rechercher</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-lg" @onclick="@(() => HandleInvalidSubmit())">Rechercher</a>
+                }
+            </div>
         </EditForm>
     </div>
 </div>
 
+
+@code {
+    private void HandleInvalidSubmit()
+    {
+        toastService.ShowError("Erreur");
+    }
+
+    private void HandleValidSubmit()
+    {
+        toastService.ShowSuccess("Succès");
+    }
+}

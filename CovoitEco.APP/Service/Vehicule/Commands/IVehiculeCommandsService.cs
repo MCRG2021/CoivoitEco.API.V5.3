@@ -4,6 +4,6 @@ namespace CovoitEco.APP.Service.Vehicule.Commands
 {
     public interface IVehiculeCommandsService
     {
-        public Task CreateVehiculeProfile(VehiculeProfileFormular formular);
+        public Task CreateVehiculeProfile(VehiculeProfileFormular formular, string token);
     }
 }

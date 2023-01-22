@@ -2,27 +2,34 @@
 
 @if (responseGetVehicule  == null)
 {
-    <p><em>Loading...</em></p>
+    <div class="container pt-5">
+        <div class="spinner-border text-primary"></div>
+        <p><em>Loading...</em></p>
+    </div>
 }
 else if (responseGetVehicule.Lists.Count == 0)
 {
-    <div>
-        <h3>Vehicule courant</h3>
-        <p>Immatriculation : </p>
-        <p>Marques: </p>
-        <p>Modèle : </p>
-        <p>Nombre de place : </p>
-        <p>Norme Euro : </p>
+    <div class="container pt-5">
+        <h3>Véhicule courant</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Immatriculation : </li>
+            <li class="list-group-item">Marques: </li>
+            <li class="list-group-item">Modèle : </li>
+            <li class="list-group-item">Nombre de place : </li>
+            <li class="list-group-item">Norme Euro : </li>
+        </ul>
     </div>
 }
 else
 {
-    <div>
-        <h3>Vehicule courant</h3>
-        <p>Immatriculation : @responseGetVehicule.Lists[0].VEHPR_Immatriculation</p>
-        <p>Marques: @responseGetVehicule.Lists[0].VEHPR_Marque</p>
-        <p>Modèle : @responseGetVehicule.Lists[0].VEHPR_Modele</p>
-        <p>Nombre de place : @responseGetVehicule.Lists[0].VEHPR_NombrePlace</p>
-        <p>Norme Euro : @responseGetVehicule.Lists[0].VEHPR_NormeEuro</p>
+    <div class="container pt-5">
+        <h3>Véhicule courant</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Immatriculation : @responseGetVehicule.Lists[0].VEHPR_Immatriculation</li>
+            <li class="list-group-item">Marques: @responseGetVehicule.Lists[0].VEHPR_Marque</li>
+            <li class="list-group-item">Modèle : @responseGetVehicule.Lists[0].VEHPR_Modele</li>
+            <li class="list-group-item">Nombre de place : @responseGetVehicule.Lists[0].VEHPR_NombrePlace</li>
+            <li class="list-group-item">Norme Euro : @responseGetVehicule.Lists[0].VEHPR_NormeEuro</li>
+        </ul>
     </div>
 }

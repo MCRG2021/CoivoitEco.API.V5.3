@@ -1,7 +1,6 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
 
-@*Test*@
 @attribute [Authorize]
 
 <PageTitle>Weather forecast</PageTitle>
@@ -38,6 +37,8 @@ else
         </tbody>
     </table>
 }
+
+@*to delete*@
 
 @code {
     private WeatherForecast[]? forecasts;

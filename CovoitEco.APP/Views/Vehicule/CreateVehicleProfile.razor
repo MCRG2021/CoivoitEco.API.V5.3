@@ -1,28 +1,33 @@
 ﻿@inherits CovoitEco.APP.Components.Vehicule.VehiculeComponent
+@inject IToastService toastService
 
-<div class="row">
-    <div class="col">
-
-        <EditForm Model=@resquestVehiculeProfileFormular OnValidSubmit="CreateVehiculeProfile">
+<div class="container pt-5">
+    <div>
+        <EditForm Model=@resquestVehiculeProfileFormular OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+            <DataAnnotationsValidator />
             <div class="form-group">
-                <label for="VEH_Immatriculation">Immatricualtion</label>
+                <label for="VEH_Immatriculation" class="form-label fw-bold fs-5">Immatricualtion</label>
                 <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Immatriculation" class="form-control" />
+                <ValidationMessage For="() => resquestVehiculeProfileFormular.VEH_Immatriculation" />
             </div>
             <div class="form-group">
-                <label for="VEH_Marque">Marque</label>
+                <label for="VEH_Marque" class="form-label fw-bold fs-5">Marque</label>
                 <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Marque" class="form-control" />
+                <ValidationMessage For="() => resquestVehiculeProfileFormular.VEH_Marque" />
             </div>
             <div class="form-group">
-                <label for="VEH_Modele">Modèle</label>
+                <label for="VEH_Modele" class="form-label fw-bold fs-5">Modèle</label>
                 <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Modele" class="form-control" />
+                <ValidationMessage For="() => resquestVehiculeProfileFormular.VEH_Modele" />
             </div>
             <div class="form-group">
-                <label for="VEH_Couleur">Couleur</label>
+                <label for="VEH_Couleur" class="form-label fw-bold fs-5">Couleur</label>
                 <InputText @bind-Value="resquestVehiculeProfileFormular.VEH_Couleur" class="form-control" />
+                <ValidationMessage For="() => resquestVehiculeProfileFormular.VEH_Couleur" />
             </div>
             <div>
                 <div class="form-group">
-                    <label for="VEH_NombrePlace">Nombre de place</label>
+                    <label for="VEH_NombrePlace" class="form-label fw-bold fs-5">Nombre de place</label>
                     <InputSelect @bind-Value="resquestVehiculeProfileFormular.VEH_NombrePlace">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -37,7 +42,7 @@
             </div>
             <div>
                 <div class="form-group">
-                    <label for="VEH_NormeEuro">Norme Euro</label>
+                    <label for="VEH_NormeEuro" class="form-label fw-bold fs-5">Norme Euro</label>
                     <InputSelect @bind-Value="resquestVehiculeProfileFormular.VEH_NormeEuro">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -50,14 +55,24 @@
                     </InputSelect>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Enregistrer</button>
         </EditForm>
     </div>
 </div>
 
-<div>
-    <a href="/CompteVehicule">Retourner à la liste</a>
+<div class="container pt-5 text-center">
+    <a href="/CompteVehicule" class="btn btn-secondary">Retourner à la liste</a>
 </div>
 
+@code {
+    private void HandleInvalidSubmit()
+    {
+        toastService.ShowError("Erreur");
+    }
 
-
+    private async void HandleValidSubmit()
+    {
+        await CreateVehiculeProfile();
+        toastService.ShowSuccess("Succès");
+    }
+}

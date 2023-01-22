@@ -12,8 +12,7 @@ namespace CovoitEco.APP.Model.Models
 
         public int RES_ANN_Id { get; set; }
         public int RES_UTL_Id { get; set; }
-        //public int RES_NbAnnimaux { get; set; }
-
+        
         #endregion
     }
 }

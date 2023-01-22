@@ -1,5 +1,6 @@
 ﻿using CovoitEco.Core.Application.Services.Annonce.Commands;
 using CovoitEco.Core.Application.Services.Annonce.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace CoivoitEco.API.Controllers
             _logger = logger;
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,6 +42,7 @@ namespace CoivoitEco.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,6 +62,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -77,6 +81,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("write:messages")]
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -95,6 +100,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("write:messages")]
         [HttpPut("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -113,6 +119,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("write:messages")]
         [HttpPut("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -131,6 +138,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

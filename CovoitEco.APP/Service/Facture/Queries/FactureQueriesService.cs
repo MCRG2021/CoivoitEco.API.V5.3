@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 
@@ -23,12 +24,13 @@ namespace CovoitEco.APP.Service.Facture.Queries
         }
 
         #endregion
-        public async Task<int> GetIdFactureReservation(int idRes) // not tested again
+        public async Task<int> GetIdFactureReservation(int idRes, string token) // not tested again
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                if (Random.Next(1, 40) == 1)
-                    throw new HttpRequestException("This is a fake request exception");
+                //if (Random.Next(1, 40) == 1)
+                //    throw new HttpRequestException("This is a fake request exception");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/Facture/GetIdFactureReservation?id=" + idRes);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();

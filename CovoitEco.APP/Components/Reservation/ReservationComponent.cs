@@ -17,8 +17,8 @@ namespace CovoitEco.APP.Components.Reservation
 
         protected async Task UpdateFacturePayment(int id)
         {
-            idFacture = await FactureQueries.GetIdFactureReservation(id);
-            await FactureCommands.UpdateFacturePayment(idFacture);
+            idFacture = await FactureQueries.GetIdFactureReservation(id, AccessToken);
+            await FactureCommands.UpdateFacturePayment(idFacture, AccessToken);
         }
 
         protected async Task UpdateStatutReservation()
@@ -27,7 +27,7 @@ namespace CovoitEco.APP.Components.Reservation
             {
                 if (reservation.RES_FACT_StatutLibelle == "EnAttente")
                 {
-                    await ReservationCommands.UpdateStatutReservation(reservation.RES_Id);
+                    await ReservationCommands.UpdateStatutReservation(reservation.RES_Id, AccessToken);
                 }
             }
         }

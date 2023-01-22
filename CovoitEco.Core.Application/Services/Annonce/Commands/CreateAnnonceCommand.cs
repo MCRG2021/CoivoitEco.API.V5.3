@@ -50,8 +50,8 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
                 ANN_Id = 0,
                 ANN_DatePublication = DateTime.Now,
                 ANN_Prix = CalculPrixParPersonne(request.ANN_DateDepart, request.ANN_DateArrive),
-                ANN_LocaliteDepart = request.ANN_RueDepart + ", " + request.ANN_NumeroDepart + ", " + request.ANN_VilleDepart + ", " + request.ANN_CodePostalDepart,
-                ANN_LocaliteArrive = request.ANN_RueArrive + ", " + request.ANN_NumeroArrive + ", " + request.ANN_VilleArrive + ", " + request.ANN_CodePostalArrive,
+                ANN_LocaliteDepart = request.ANN_RueDepart + ", " + request.ANN_NumeroDepart + ", " + FirstLetterUpper(request.ANN_VilleDepart) + ", " + request.ANN_CodePostalDepart,
+                ANN_LocaliteArrive = request.ANN_RueArrive + ", " + request.ANN_NumeroArrive + ", " + FirstLetterUpper(request.ANN_VilleArrive) + ", " + request.ANN_CodePostalArrive,
                 ANN_DateDepart = request.ANN_DateDepart,
                 ANN_DateArrive = request.ANN_DateArrive,
                 ANN_OptAutoroute = request.ANN_OptAutoroute,
@@ -73,8 +73,22 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
             double minutes = 0;
             TimeSpan timespan = arrivalDate - departureDate;
             minutes = timespan.TotalMinutes;
-            //float price = (float)(minutes * 0.05);
             return (float)Math.Round((minutes * 0.05), 2);
+        }
+
+        /// <summary>
+        /// Must be a uppercase for annonceRecherche
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        private string FirstLetterUpper(string word)
+        {
+            if (word.Length == 0)
+                return "";
+            else if (word.Length == 1)
+                return char.ToUpper(word[0]).ToString();
+            else
+                 return char.ToUpper(word[0]) + word.Substring(1);
         }
     }
 }
