@@ -10,16 +10,15 @@ namespace CovoitEco.APP.Components.Annonce
 {
     public class AnnonceComponent : BaseComponent
     {
-        
         /// <summary>
         /// add get id user current
         /// </summary>
         /// <returns></returns>
-        //[Authorize]
         protected override async Task OnInitializedAsync()
         {
-            await GetAccessToken(); // to initialize accessToken
-            await SetIdUser(); // to initialize idUser
+            //await GetAccessToken(); // to initialize accessToken
+            //await SetIdUser(); // to initialize idUser
+            await Initialized();
             responseAnnonce = await AnnonceQueries.GetAllAnnonceProfile(idUser, AccessToken); // Id user current 
             await UpdateAnnonceStatut(); // Check and update statut annonce
         }

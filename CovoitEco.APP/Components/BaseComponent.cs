@@ -157,7 +157,6 @@ namespace CovoitEco.APP.Components
             idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name, AccessToken); // email for auth0
         }
 
-        // use to tested a token access 
         protected async Task GetAccessToken()
         {
             var accessTokenResult = await TokenProvider.RequestAccessToken();
@@ -167,6 +166,12 @@ namespace CovoitEco.APP.Components
             {
                 AccessToken = token.Value;
             }
+        }
+
+        protected async Task Initialized()
+        {
+            await GetAccessToken(); // to initialize accessToken
+            await SetIdUser(); // to initialize idUser
         }
 
     }
