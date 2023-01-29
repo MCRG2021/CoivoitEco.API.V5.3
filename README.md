@@ -2,7 +2,7 @@
 
 Résumé du contenu 
 
-Projets :
+Projets (voire Branche Code pour la version finale!!!) :
 
 CoivoitEco.API.Consume.Auth0 (Class Library),
 CoivoitEco.APP.Model (Class Library),
