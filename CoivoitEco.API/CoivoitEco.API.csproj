@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CovoitEco.API.Consume.Auth0\CovoitEco.API.Consume.Auth0.csproj" />
-    <ProjectReference Include="..\CovoitEco.Core.Application\CovoitEco.Core.Application.csproj" />
     <ProjectReference Include="..\CovoitEco.Core.Infrastructure\CovoitEco.Core.Infrastructure.csproj" />
   </ItemGroup>
 

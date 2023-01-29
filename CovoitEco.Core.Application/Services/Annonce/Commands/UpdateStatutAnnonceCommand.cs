@@ -10,6 +10,7 @@ using CovoitEco.Core.Application.Services.Reservation.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace CovoitEco.Core.Application.Services.Annonce.Commands
 {
     public class UpdateStatutAnnonceCommand : IRequest<int>
@@ -44,11 +45,12 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
             }
 
             // "EnCours" => "Close"
-            if (annonce.ANN_STATANN_Id == 2 && reservation.Count().Equals(0))
+            if (annonce.ANN_STATANN_Id == 2 && reservation.Count().Equals(0) && annonce.ANN_DateArrive < DateTime.Now)
             {
                 annonce.ANN_STATANN_Id = 3; // Status "Close"
             }
 
+            // transactions  
             await _context.SaveChangesAsync(cancellationToken);
 
             return request.ANN_Id;

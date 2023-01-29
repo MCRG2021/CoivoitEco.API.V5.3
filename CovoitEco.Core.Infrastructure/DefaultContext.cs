@@ -27,7 +27,6 @@ namespace CovoitEco.Core.Infrastructure
         public DbSet<Notification> Notification { get; set; }
         public DbSet<Recherche> Recherche { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
-        public DbSet<Role> Role { get; set; }
         public DbSet<StatutAnnonce> StatutAnnonce { get; set; }
         public DbSet<StatutReservation> StatutReservation { get; set; }
         public DbSet<Utilisateur> Utilisateur { get; set; }

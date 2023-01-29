@@ -33,7 +33,7 @@ else
                         <td>@reservationUserProfile.RES_ANN_StatutLibelle</td>
                         <td class="align-middle">
                             <a @onclick="@(() => UpdateIdReservation(reservationUserProfile.RES_Id))" href="/DetailReservation" class="btn btn-primary">Detail</a> |
-                            @if (@reservationUserProfile.RES_FACT_FactureResolus == false)
+                            @if (@reservationUserProfile.RES_FACT_FactureResolus == false && @reservationUserProfile.RES_ANN_StatutLibelle == "EnCours")
                             {
                                 <a class="btn btn-primary" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</a>
                             }
