@@ -24,7 +24,7 @@ namespace CovoitEco.APP.Service.Facture.Queries
         }
 
         #endregion
-        public async Task<int> GetIdFactureReservation(int idRes, string token) // not tested again
+        public async Task<int> GetIdFactureReservation(int idRes) // not tested again
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {

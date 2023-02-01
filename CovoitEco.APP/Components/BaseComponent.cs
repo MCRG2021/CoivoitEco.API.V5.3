@@ -140,7 +140,7 @@ namespace CovoitEco.APP.Components
 
         protected async Task SetIdVehCurrent()
         {
-            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser, AccessToken); 
+            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser); 
             if (responseGetVehicule.Lists.Count == 0)
             {
                 throw new Exception(); // to edit (message you have no vehicule profile)
@@ -154,7 +154,7 @@ namespace CovoitEco.APP.Components
         protected async Task SetIdUser()
         {
             ResponseUserInfo = await UtilisateurQueries.GetUtilisateurInfo(AccessToken);
-            idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name, AccessToken); // email for auth0
+            idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name); // email for auth0
         }
 
         protected async Task GetAccessToken()

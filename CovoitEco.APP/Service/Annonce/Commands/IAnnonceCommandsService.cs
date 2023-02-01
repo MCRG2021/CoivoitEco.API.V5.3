@@ -4,7 +4,7 @@ namespace CovoitEco.APP.Service.Annonce.Commands
 {
     public interface IAnnonceCommandsService
     {
-        public Task CreateAnnonce(AnnonceProfileFormular fromular, string token);
-        public Task UpdateStatutAnnonce(int idAnn, string token);
+        public Task CreateAnnonce(AnnonceProfileFormular formular);
+        public Task UpdateStatutAnnonce(int idAnn);
     }
 }

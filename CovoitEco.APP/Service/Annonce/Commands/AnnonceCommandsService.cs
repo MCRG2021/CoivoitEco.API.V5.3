@@ -29,7 +29,7 @@ namespace CovoitEco.APP.Service.Annonce.Commands
         #endregion
 
 
-        public async Task CreateAnnonce(AnnonceProfileFormular formular, string token)
+        public async Task CreateAnnonce(AnnonceProfileFormular formular)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -39,7 +39,7 @@ namespace CovoitEco.APP.Service.Annonce.Commands
             });
         }
 
-        public async Task UpdateStatutAnnonce(int idAnn, string token)
+        public async Task UpdateStatutAnnonce(int idAnn)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {

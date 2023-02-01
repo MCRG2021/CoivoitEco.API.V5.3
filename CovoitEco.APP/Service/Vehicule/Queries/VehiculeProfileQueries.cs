@@ -27,7 +27,7 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
 
         #endregion
 
-        public async Task<VehiculeProfileVm> GetVehiculeProfile(int id, string token)
+        public async Task<VehiculeProfileVm> GetVehiculeProfile(int id)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -39,7 +39,7 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
             });
         }
 
-        public async Task<VehiculeProfileVm> GetAllVehiculeProfile(int id, string token) 
+        public async Task<VehiculeProfileVm> GetAllVehiculeProfile(int id) 
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -51,7 +51,7 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
             });
         }
 
-        public async Task<VehiculeProfileVm> GetVehicule(int id, string token)
+        public async Task<VehiculeProfileVm> GetVehicule(int id)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {

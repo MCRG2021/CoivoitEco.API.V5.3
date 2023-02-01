@@ -8,7 +8,7 @@ namespace CovoitEco.APP.Components.Reservation
     {
         protected override async Task OnInitializedAsync()
         {
-            responseGetReservationUser = await ReservationQueries.GetReservationUserProfile(idReservation, AccessToken);
+            responseGetReservationUser = await ReservationQueries.GetReservationUserProfile(idReservation);
         }
 
     }

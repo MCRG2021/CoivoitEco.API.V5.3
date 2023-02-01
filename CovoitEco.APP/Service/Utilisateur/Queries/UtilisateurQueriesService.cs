@@ -27,7 +27,7 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
 
         #endregion
 
-        public async Task<UserProfileVm> GetUtilisateurPofile(int idUser, string token)
+        public async Task<UserProfileVm> GetUtilisateurPofile(int idUser)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -39,7 +39,7 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
             });
         }
 
-        public async Task<int> GetIdUtilisateurPofile(string mail, string token)
+        public async Task<int> GetIdUtilisateurPofile(string mail)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {

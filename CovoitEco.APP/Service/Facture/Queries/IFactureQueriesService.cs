@@ -2,6 +2,6 @@
 {
     public interface IFactureQueriesService
     {
-        public Task<int> GetIdFactureReservation(int idRes, string token);
+        public Task<int> GetIdFactureReservation(int idRes);
     }
 }

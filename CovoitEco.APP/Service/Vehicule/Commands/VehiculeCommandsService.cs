@@ -26,7 +26,7 @@ namespace CovoitEco.APP.Service.Vehicule.Commands
 
         #endregion
 
-        public async Task CreateVehiculeProfile(VehiculeProfileFormular formular, string token)
+        public async Task CreateVehiculeProfile(VehiculeProfileFormular formular)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {

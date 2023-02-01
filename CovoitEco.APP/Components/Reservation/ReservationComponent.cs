@@ -11,14 +11,14 @@ namespace CovoitEco.APP.Components.Reservation
     {
         protected override async Task OnInitializedAsync()
         {
-            responseGetAllReservationUser = await ReservationQueries.GetAllReservationUserProfile(idUser, AccessToken);
+            responseGetAllReservationUser = await ReservationQueries.GetAllReservationUserProfile(idUser);
             await UpdateStatutReservation();
         }
 
         protected async Task UpdateFacturePayment(int id)
         {
-            idFacture = await FactureQueries.GetIdFactureReservation(id, AccessToken);
-            await FactureCommands.UpdateFacturePayment(idFacture, AccessToken);
+            idFacture = await FactureQueries.GetIdFactureReservation(id);
+            await FactureCommands.UpdateFacturePayment(idFacture);
         }
 
         protected async Task UpdateStatutReservation()
@@ -27,7 +27,7 @@ namespace CovoitEco.APP.Components.Reservation
             {
                 if (reservation.RES_FACT_StatutLibelle == "EnAttente")
                 {
-                    await ReservationCommands.UpdateStatutReservation(reservation.RES_Id, AccessToken);
+                    await ReservationCommands.UpdateStatutReservation(reservation.RES_Id);
                 }
             }
         }

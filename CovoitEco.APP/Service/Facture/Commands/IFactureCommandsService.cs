@@ -2,7 +2,7 @@
 {
     public interface IFactureCommandsService
     {
-        public Task CreateFacture(int id, string token);
-        public Task UpdateFacturePayment(int idFact, string token);
+        public Task CreateFacture(int id);
+        public Task UpdateFacturePayment(int idFact);
     }
 }

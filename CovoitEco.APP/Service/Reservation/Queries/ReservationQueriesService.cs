@@ -26,7 +26,7 @@ namespace CovoitEco.APP.Service.Reservation.Queries
 
         #endregion
 
-        public async Task<int> GetIdReservationUserProfile(int idAnn, int idUser, string token)
+        public async Task<int> GetIdReservationUserProfile(int idAnn, int idUser)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -38,7 +38,7 @@ namespace CovoitEco.APP.Service.Reservation.Queries
             });
         }
 
-        public async Task<ReservationUserProfileVm> GetAllReservationUserProfile(int idUser, string token)
+        public async Task<ReservationUserProfileVm> GetAllReservationUserProfile(int idUser)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -50,7 +50,7 @@ namespace CovoitEco.APP.Service.Reservation.Queries
             });
         }
 
-        public async Task<ReservationUserProfileVm> GetReservationUserProfile(int idRes, string token)
+        public async Task<ReservationUserProfileVm> GetReservationUserProfile(int idRes)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -62,7 +62,7 @@ namespace CovoitEco.APP.Service.Reservation.Queries
             });
         }
 
-        public async Task<ReservationProfileVm> GetAllReservationProfile(int id, string token)
+        public async Task<ReservationProfileVm> GetAllReservationProfile(int id)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {

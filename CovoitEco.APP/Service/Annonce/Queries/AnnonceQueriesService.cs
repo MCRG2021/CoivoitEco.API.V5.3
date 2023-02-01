@@ -28,7 +28,7 @@ namespace CovoitEco.APP.Service.Annonce.Queries
 
         #endregion
 
-        public async Task<AnnonceProfileVm> GetAllAnnonceProfile(int id, string token)
+        public async Task<AnnonceProfileVm> GetAllAnnonceProfile(int id)
         {
             //var httpResponse = "";
 
@@ -42,7 +42,7 @@ namespace CovoitEco.APP.Service.Annonce.Queries
             });
         }
 
-        public async Task<AnnonceProfileVm> GetAnnonceRecherche(DateTime departureDate, string departureCity, string arrivalCity, string token) 
+        public async Task<AnnonceProfileVm> GetAnnonceRecherche(DateTime departureDate, string departureCity, string arrivalCity) 
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -54,7 +54,7 @@ namespace CovoitEco.APP.Service.Annonce.Queries
             });
         }
 
-        public async Task<AnnonceProfileVm> GetAnnonceProfile(int id, string token)
+        public async Task<AnnonceProfileVm> GetAnnonceProfile(int id)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {

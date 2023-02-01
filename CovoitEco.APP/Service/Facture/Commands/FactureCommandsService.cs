@@ -25,7 +25,7 @@ namespace CovoitEco.APP.Service.Facture.Commands
 
         #endregion
 
-        public async Task CreateFacture(int id, string token)
+        public async Task CreateFacture(int id)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -35,7 +35,7 @@ namespace CovoitEco.APP.Service.Facture.Commands
             });
         }
 
-        public async Task UpdateFacturePayment(int idFact, string token)
+        public async Task UpdateFacturePayment(int idFact)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {

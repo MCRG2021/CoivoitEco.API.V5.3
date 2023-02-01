@@ -26,7 +26,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
 
         #endregion
 
-        public async Task CreateReservation(ReservationFormular formular, string token)
+        public async Task CreateReservation(ReservationFormular formular)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -36,7 +36,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
             });
         }
 
-        public async Task UpdateConfirmePayment(int id, string token)
+        public async Task UpdateConfirmePayment(int id)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -46,7 +46,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
             });
         }
 
-        public async Task UpdateAccepterReservation(int id, string token)
+        public async Task UpdateAccepterReservation(int id)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
@@ -56,7 +56,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
             });
         }
 
-        public async Task UpdateStatutReservation(int id, string token)
+        public async Task UpdateStatutReservation(int id)
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {

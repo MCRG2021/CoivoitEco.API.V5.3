@@ -9,7 +9,7 @@ namespace CovoitEco.APP.Components.Utilisateur
     {
         protected override async Task OnInitializedAsync()
         {
-            responseGetUtilisateurProfile = await UtilisateurQueries.GetUtilisateurPofile(idUser,AccessToken);
+            responseGetUtilisateurProfile = await UtilisateurQueries.GetUtilisateurPofile(idUser);
         }
     }
 }
