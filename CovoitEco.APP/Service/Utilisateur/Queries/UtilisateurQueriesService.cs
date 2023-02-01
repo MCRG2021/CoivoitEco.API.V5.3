@@ -31,11 +31,7 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var httpResponse =
-                    await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserProfile?id=" + idUser);
+                var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserProfile?id=" + idUser);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 var users = JsonConvert.DeserializeObject<UserProfileVm>(content);
@@ -47,11 +43,7 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var httpResponse =
-                    await _httpClient.GetAsync("https://localhost:7197/api/User/GetIdUserProfile?mail=" + mail);
+                var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/User/GetIdUserProfile?mail=" + mail);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 int Iduser = JsonConvert.DeserializeObject<int>(content);
@@ -63,8 +55,7 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
+                //inject token default for all requests
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse =
                     await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserInfo?accessToken=" + token);

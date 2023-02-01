@@ -33,9 +33,6 @@ namespace CovoitEco.APP.Service.Annonce.Commands
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var postAnnonce = await _httpClient.PostAsJsonAsync("https://localhost:7197/api/Annonce/CreateAnnonce", formular);
                 if (!postAnnonce.IsSuccessStatusCode)
                     throw new Exception();
@@ -46,9 +43,6 @@ namespace CovoitEco.APP.Service.Annonce.Commands
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var postAnnonce = await _httpClient.PutAsJsonAsync("https://localhost:7197/api/Annonce/UpdateStatutAnnonce?id=" + idAnn, idAnn);
                 if (!postAnnonce.IsSuccessStatusCode)
                     throw new Exception();

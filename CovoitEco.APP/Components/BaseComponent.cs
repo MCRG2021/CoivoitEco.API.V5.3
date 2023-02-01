@@ -39,7 +39,7 @@ namespace CovoitEco.APP.Components
         public static bool confirme { get; set; }
 
         [Parameter]
-        public static string AccessToken { get; set; }
+        public string AccessToken { get; set; }
 
         #region Response
 

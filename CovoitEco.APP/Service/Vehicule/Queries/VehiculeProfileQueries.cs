@@ -31,9 +31,6 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/VehiculeProfile/GetVehiculeProfile?id=" + id);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
@@ -46,9 +43,6 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/VehiculeProfile/GetAllVehiculeProfile?id=" + id);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
@@ -61,9 +55,6 @@ namespace CovoitEco.APP.Service.Vehicule.Queries
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
-                //if (Random.Next(1, 40) == 1)
-                //    throw new HttpRequestException("This is a fake request exception");
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/VehiculeProfile/GetVehicule?id=" + id);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();

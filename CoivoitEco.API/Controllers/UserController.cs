@@ -110,7 +110,7 @@ namespace CoivoitEco.API.Controllers
             return Ok(result);
         }
 
-        //[Authorize("read:users")] 
+        [Authorize("read:users")] 
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
