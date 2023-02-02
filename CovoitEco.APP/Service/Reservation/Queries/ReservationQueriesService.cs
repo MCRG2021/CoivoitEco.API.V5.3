@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using CovoitEco.APP.Model.Models;
+﻿using CovoitEco.APP.Model.Models;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;

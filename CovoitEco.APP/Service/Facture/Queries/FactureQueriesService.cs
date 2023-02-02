@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 
