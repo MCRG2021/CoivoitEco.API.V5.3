@@ -1,5 +1,4 @@
-﻿using CovoitEco.APP.Service.Vehicule.Queries;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace CovoitEco.APP.Components
 {

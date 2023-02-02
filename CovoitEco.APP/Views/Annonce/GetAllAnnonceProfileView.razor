@@ -14,6 +14,7 @@ else
             <thead>
             <tr>
                 <th scope="col">Date de publication</th>
+                <th scope="col">Heure de publication</th>
                 <th scope="col">Localité de départ</th>
                 <th scope="col">Localité d'arrivé</th>
                 <th scope="col">Statut</th>
@@ -23,7 +24,8 @@ else
             @foreach (var annonceProfile in responseAnnonce.Lists)
             {
                 <tr>
-                    <td>@annonceProfile.ANNPR_DatePublication</td>
+                    <td>@annonceProfile.ANNPR_DatePublication.Year/@annonceProfile.ANNPR_DatePublication.Month/@annonceProfile.ANNPR_DatePublication.Day</td>
+                    <td>@annonceProfile.ANNPR_DatePublication.Hour : @annonceProfile.ANNPR_DatePublication.Minute</td>
                     <td>@annonceProfile.ANNPR_LocaliteDepart</td>
                     <td>@annonceProfile.ANNPR_LocaliteArrive</td>
                     <td>@annonceProfile.ANNPR_Statut</td>

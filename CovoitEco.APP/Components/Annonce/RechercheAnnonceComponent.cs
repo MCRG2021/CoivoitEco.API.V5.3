@@ -1,7 +1,4 @@
-﻿using CoiviteEco.APP.Service.Annonce.Queries;
-using CovoitEco.APP.Model.Models;
-using Microsoft.AspNetCore.Components;
-
+﻿
 namespace CovoitEco.APP.Components.Annonce
 {
     public class RechercheAnnonceComponent : BaseComponent

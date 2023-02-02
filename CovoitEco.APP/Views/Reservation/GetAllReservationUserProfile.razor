@@ -14,8 +14,10 @@ else
             <thead>
                 <tr>
                     <th scope="col">Date de départ</th>
+                    <th scope="col">Heure de départ</th>
                     <th scope="col">Localité de départ</th>
                     <th scope="col">Date d'arrivé</th>
+                    <th scope="col">Heure d'arrivé</th>
                     <th scope="col">Localité d'arrivé</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Statut</th>
@@ -25,9 +27,11 @@ else
                 @foreach (var reservationUserProfile in responseGetAllReservationUser.Lists)
                 {
                     <tr>
-                        <td>@reservationUserProfile.RES_ANN_DateDepart</td>
+                        <td>@reservationUserProfile.RES_ANN_DateDepart.Year/@reservationUserProfile.RES_ANN_DateDepart.Month/@reservationUserProfile.RES_ANN_DateDepart.Day</td>
+                        <td>@reservationUserProfile.RES_ANN_DateDepart.Hour : @reservationUserProfile.RES_ANN_DateDepart.Minute</td>
                         <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
-                        <td>@reservationUserProfile.RES_ANN_DateArrive</td>
+                        <td>@reservationUserProfile.RES_ANN_DateArrive.Year/@reservationUserProfile.RES_ANN_DateArrive.Month/@reservationUserProfile.RES_ANN_DateArrive.Day</td>
+                        <td>@reservationUserProfile.RES_ANN_DateArrive.Hour : @reservationUserProfile.RES_ANN_DateArrive.Minute</td>
                         <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
                         <td>@reservationUserProfile.RES_ANN_Prix</td>
                         <td>@reservationUserProfile.RES_ANN_StatutLibelle</td>
