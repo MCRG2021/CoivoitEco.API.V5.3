@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,10 @@ namespace CovoitEco.Core.Application.Services.Reservation.Queries
 
         public async Task<ReservationUserProfileVm> Handle(GetAllReservationUserProfileQuery request, CancellationToken cancellationToken)
         {
-            
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
+
             var list = await (
                 from r in _context.Reservation
                 join f in _context.Facture on r.RES_Id equals f.FACT_RES_Id

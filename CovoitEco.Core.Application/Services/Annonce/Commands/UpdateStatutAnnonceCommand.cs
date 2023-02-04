@@ -36,7 +36,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
             }
 
             // to count a number of reservation 
-            var reservation = _context.Reservation.Where(item => item.RES_ANN_Id == request.ANN_Id);
+            var reservation = _context.Reservation.Where(item => item.RES_ANN_Id == request.ANN_Id && item.RES_STATRES_Id == 2);
 
             // "Publier" => "EnCours" 
             if (annonce.ANN_STATANN_Id == 1 && TooLate(annonce.ANN_DateDepart) == true)

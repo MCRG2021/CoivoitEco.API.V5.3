@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CovoitEco.Core.Application.Common.Interfaces;
+using CovoitEco.Core.Application.Filter;
 using FluentValidation.AspNetCore;
 using MediatR;
 
@@ -13,8 +14,6 @@ namespace CovoitEco.Core.Application.Services.VehiculeProfile.Commands
     {
         public string VEH_Immatriculation { get; set; }
         public string VEH_Couleur { get; set; }
-        //public bool VEH_Courant { get; set; }
-        //public bool VEH_Disponible { get; set; }
         public string VEH_Marque { get; set; }
         public string VEH_Modele { get; set; }
         public int VEH_NombrePlace { get; set; }
@@ -33,6 +32,9 @@ namespace CovoitEco.Core.Application.Services.VehiculeProfile.Commands
 
         public async Task<int> Handle(CreateVehiculeProfileCommand request, CancellationToken cancellationToken)
         {
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.VEH_UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
 
             var entity = new Domain.Entities.Vehicule
             {

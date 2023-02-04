@@ -93,7 +93,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
-        //[Authorize("write:messages")]
+        [Authorize("write:messages")]
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

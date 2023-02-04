@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using CovoitEco.Core.Application.Services.Annonce.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,6 @@ namespace CovoitEco.Core.Application.Services.Reservation.Queries
 
         public async Task<int> Handle(GetIdReservationUserProfileQuery request, CancellationToken cancellationToken) 
         {
-
             var list = await (
                 from r in _context.Reservation
                 where (r.RES_ANN_Id == request.ANN_Id && r.RES_UTL_Id == request.UTL_Id)

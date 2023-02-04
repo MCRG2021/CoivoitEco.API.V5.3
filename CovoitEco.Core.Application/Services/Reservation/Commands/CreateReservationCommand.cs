@@ -1,5 +1,6 @@
 ﻿using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,10 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
 
         public async Task<int> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.RES_UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
+
             // Test if user haf a reservation 
             List<AnnonceReservationDTO> list = new List<AnnonceReservationDTO>();
             list = await (from r in _context.Reservation

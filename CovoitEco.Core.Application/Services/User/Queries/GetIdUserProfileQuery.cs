@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using CovoitEco.Core.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,8 @@ namespace CovoitEco.Core.Application.Services.User.Queries
         public async Task<int> Handle(GetIdUserProfileQuery request, CancellationToken cancellationToken)
         {
             var user = _context.Utilisateur.Where(item => item.UTL_Mail == request.UTL_Mail);
+            // Check identity user
+            if (user.First().UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
 
             if (user.Count() > 0) return user.First().UTL_Id;
             else throw new Exception("No user detected");

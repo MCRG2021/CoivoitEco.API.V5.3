@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +32,6 @@ namespace CovoitEco.Core.Application.Services.VehiculeProfile.Queries
         public async Task<VehiculeProfileVm> Handle(GetVehiculeQuery request,
             CancellationToken cancellationToken)
         {
-
             return new VehiculeProfileVm()
             {
                 Lists = await (

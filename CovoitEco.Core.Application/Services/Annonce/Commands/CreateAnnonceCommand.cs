@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using CovoitEco.Core.Application.Common.Interfaces;
+using CovoitEco.Core.Application.Filter;
 using CovoitEco.Core.Application.Services.VehiculeProfile.Commands;
 using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -45,6 +46,10 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
 
         public async Task<int> Handle(CreateAnnonceCommand request, CancellationToken cancellationToken)
         {
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.ANN_UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
+
             var entity = new Domain.Entities.Annonce()
             {
                 ANN_Id = 0,
@@ -63,6 +68,15 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
             };
 
             _context.Annonce.Add(entity);
+
+            // Test minimum 1hours between each annonce
+            var annonce = _context.Annonce.Where(item => item.ANN_UTL_Id == request.ANN_UTL_Id);
+            foreach (var item in annonce)
+            {
+                
+            }
+
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return entity.ANN_Id;
@@ -89,6 +103,26 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
                 return char.ToUpper(word[0]).ToString();
             else
                  return char.ToUpper(word[0]) + word.Substring(1);
+        }
+
+        private bool Overlap(Domain.Entities.Annonce annonceOld, Domain.Entities.Annonce annonceNew)
+        {
+            double minutes = 0;
+
+            if (annonceOld.ANN_DateDepart > annonceNew.ANN_DateDepart && annonceOld.ANN_DateArrive > annonceNew.ANN_DateArrive)
+            {
+                TimeSpan timespan = annonceOld.ANN_DateDepart - annonceNew.ANN_DateArrive;
+                minutes = timespan.TotalMinutes;
+                if (minutes > 60) return false;
+            }
+
+            if (annonceOld.ANN_DateDepart < annonceNew.ANN_DateDepart && annonceOld.ANN_DateArrive < annonceNew.ANN_DateDepart)
+            {
+                TimeSpan timespan = annonceNew.ANN_DateDepart - annonceNew.ANN_DateArrive;
+                minutes = timespan.TotalMinutes;
+                if (minutes > 60) return false;
+            }
+            return true;
         }
     }
 }

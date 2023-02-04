@@ -32,6 +32,12 @@ namespace CovoitEco.Core.Application.Services.Facture.Commands
 
             var reservation = await _context.Reservation.FindAsync(facture.FACT_RES_Id);
 
+            var annonce =  _context.Annonce.Where(item => item.ANN_Id == reservation.RES_ANN_Id);
+
+            // Test if annonce "EnCours" + journey ended
+            if (annonce.First().ANN_STATANN_Id != 2 && annonce.First().ANN_DateArrive > DateTime.Now)
+                throw new Exception("You have to wait the end of the journey ");
+
             if (facture == null)
             {
                 throw new NotFoundException(nameof(facture), request.FACT_Id);
@@ -44,8 +50,6 @@ namespace CovoitEco.Core.Application.Services.Facture.Commands
             {
                 throw new NotFoundException(nameof(facture), request.FACT_Id);
             }
-
-            //reservation.RES_STATRES_Id = 3; // to change when all status established => je le fais dans la partie updateConfirmePayment => ligne a supprimer 
 
             await _context.SaveChangesAsync(cancellationToken);
 

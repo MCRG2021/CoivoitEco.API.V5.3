@@ -7,6 +7,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using CovoitEco.Core.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -31,9 +32,11 @@ namespace CovoitEco.Core.Application.Services.VehiculeProfile.Queries
 
         public async Task<VehiculeProfileVm> Handle(GetVehiculeProfileQuery request, CancellationToken cancellationToken)
         {
-         
-            //    ).ProjectTo<VehiculeProfileDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.VEHPR_Id).ToListAsync(cancellationToken)
-            
+
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
+
 
             return new VehiculeProfileVm()
             {

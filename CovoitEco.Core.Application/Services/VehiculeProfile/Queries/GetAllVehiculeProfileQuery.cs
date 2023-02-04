@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,10 @@ namespace CovoitEco.Core.Application.Services.VehiculeProfile.Queries
 
         public async Task<VehiculeProfileVm> Handle(GetAllVehiculeProfileQuery request, CancellationToken cancellationToken)
         {
-            
+            // Check identity user
+            var user = await _context.Utilisateur.FindAsync(request.UTL_Id);
+            if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
+
             return new VehiculeProfileVm()
             {
                 Lists = await (

@@ -1,6 +1,8 @@
-﻿using CovoitEco.API.Consume.Auth0.Interface.User.Commands;
+﻿using CoivoitEco.API.Filter;
+using CovoitEco.API.Consume.Auth0.Interface.User.Commands;
 using CovoitEco.API.Consume.Auth0.Interface.User.Queries;
 using CovoitEco.API.Consume.Auth0.Models;
+using CovoitEco.Core.Application.Filter;
 using CovoitEco.Core.Application.Services.Annonce.Queries;
 using CovoitEco.Core.Application.Services.User.Commands;
 using CovoitEco.Core.Application.Services.User.Queries;
@@ -28,7 +30,7 @@ namespace CoivoitEco.API.Controllers
             _client = client;
         }
 
-        //[Authorize("write:users")] 
+        //Authorize not required
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,7 +50,7 @@ namespace CoivoitEco.API.Controllers
             return Ok();
         }
 
-        //[Authorize("write:users")]
+        [Authorize("write:users")]
         [HttpPatch("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -68,7 +70,7 @@ namespace CoivoitEco.API.Controllers
             return Ok();
         }
 
-        //[Authorize("write:users")] 
+        [Authorize("write:users")] 
         [HttpDelete("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -88,7 +90,7 @@ namespace CoivoitEco.API.Controllers
             return Ok();
         }
 
-        //[Authorize("read:users")] 
+        [Authorize("read:users")] 
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -110,7 +112,7 @@ namespace CoivoitEco.API.Controllers
             return Ok(result);
         }
 
-        [Authorize("read:users")] 
+        [Authorize("read:messages")] 
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -132,6 +134,7 @@ namespace CoivoitEco.API.Controllers
             return Ok(result);
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -141,7 +144,7 @@ namespace CoivoitEco.API.Controllers
             try
             {
                 _logger.LogInformation("GetUserProfile");
-                return await Mediator.Send(new GetUserProfileQuery() { UTL_Id = id });
+                return await Mediator.Send(new GetUserProfileQuery() { UTL_Id = id});
             }
             catch (Exception e)
             {
@@ -150,6 +153,7 @@ namespace CoivoitEco.API.Controllers
             }
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
