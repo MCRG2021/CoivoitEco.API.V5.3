@@ -39,30 +39,17 @@ namespace CovoitEco.APP.Service.Utilisateur.Queries
             });
         }
 
-        public async Task<int> GetIdUtilisateurPofile(string mail)
-        {
-            return await _retrypolicy.ExecuteAsync(async () =>
-            {
-                var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/User/GetIdUserProfile?mail=" + mail);
-                if (!httpResponse.IsSuccessStatusCode) throw new Exception();
-                var content = await httpResponse.Content.ReadAsStringAsync();
-                int Iduser = JsonConvert.DeserializeObject<int>(content);
-                return Iduser;
-            });
-        }
-
-        public async Task<UserInfo> GetUtilisateurInfo(string token)
+        public async Task<int> GetIdUtilisateurPofile(string mail, string token)
         {
             return await _retrypolicy.ExecuteAsync(async () =>
             {
                 //inject token default for all requests
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var httpResponse =
-                    await _httpClient.GetAsync("https://localhost:7197/api/User/GetUserInfo?accessToken=" + token);
+                var httpResponse = await _httpClient.GetAsync("https://localhost:7197/api/User/GetIdUserProfile?mail=" + mail);
                 if (!httpResponse.IsSuccessStatusCode) throw new Exception();
                 var content = await httpResponse.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<UserInfo>(content);
-                return user;
+                int Iduser = JsonConvert.DeserializeObject<int>(content);
+                return Iduser;
             });
         }
     }

@@ -10,6 +10,7 @@ using CovoitEco.APP.Service.Utilisateur.Queries;
 using CovoitEco.APP.Service.Vehicule.Commands;
 using CovoitEco.APP.Service.Vehicule.Queries;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace CovoitEco.APP.Components
@@ -35,9 +36,6 @@ namespace CovoitEco.APP.Components
 
         [Parameter]
         public static bool confirme { get; set; }
-
-        [Parameter]
-        public string AccessToken { get; set; }
 
         #region Response
 
@@ -118,6 +116,9 @@ namespace CovoitEco.APP.Components
         [Inject]
         public IUtilisateurCommandsService UtilisateurCommands { get; set;}
 
+        [Inject]
+        public AuthenticationStateProvider GetAuthenticationStateAsync { get; set; }
+
         #endregion
 
 
@@ -149,27 +150,18 @@ namespace CovoitEco.APP.Components
             }
         }
 
-        protected async Task SetIdUser()
-        {
-            ResponseUserInfo = await UtilisateurQueries.GetUtilisateurInfo(AccessToken);
-            idUser = await UtilisateurQueries.GetIdUtilisateurPofile(ResponseUserInfo.name); // email for auth0
-        }
-
-        protected async Task GetAccessToken()
+        protected async Task Initialized()
         {
             var accessTokenResult = await TokenProvider.RequestAccessToken();
-            AccessToken = string.Empty;
 
             if (accessTokenResult.TryGetToken(out var token))
             {
-                AccessToken = token.Value;
+                // initialize id User 
+                var authstate = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
+                var user = authstate.User;
+                var name = user.Identity.Name;
+                idUser = await UtilisateurQueries.GetIdUtilisateurPofile(name, token.Value);
             }
-        }
-
-        protected async Task Initialized()
-        {
-            await GetAccessToken(); // to initialize accessToken
-            await SetIdUser(); // to initialize idUser
         }
 
     }

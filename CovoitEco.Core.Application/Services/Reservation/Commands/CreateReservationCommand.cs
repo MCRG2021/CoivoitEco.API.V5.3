@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CovoitEco.Core.Application.Common.Exceptions;
-using CovoitEco.Core.Application.Common.Interfaces;
+﻿using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
-using CovoitEco.Core.Application.Services.Annonce.Queries;
-using CovoitEco.Core.Application.Services.Reservation.Queries;
-using CovoitEco.Core.Application.Services.VehiculeProfile.Commands;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,9 +25,8 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
 
         public async Task<int> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            List<AnnonceReservationDTO> list = new List<AnnonceReservationDTO>();
-
             // Test if user haf a reservation 
+            List<AnnonceReservationDTO> list = new List<AnnonceReservationDTO>();
             list = await (from r in _context.Reservation
                           where (r.RES_ANN_Id == request.RES_ANN_Id) && (r.RES_UTL_Id == request.RES_UTL_Id)
                           select new AnnonceReservationDTO
@@ -47,6 +37,20 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
                           }).ToListAsync(cancellationToken);
 
             if (list.Count != 0) throw new Exception("Er is already a reservation for this user on this annonce");
+
+            // Test if too late
+            var annonce = _context.Annonce.Where(item => item.ANN_Id == request.RES_ANN_Id);
+            if (TooLate(annonce.First().ANN_DateDepart) == true) throw new Exception("It's too late to create your reservation");
+
+            // Test if the owner is not a user
+            if (annonce.First().ANN_UTL_Id == request.RES_UTL_Id)
+                throw new Exception("A user and the owner are the same");
+
+            // Test if I have enough places
+            var listReservation = _context.Reservation.
+                Where(item => item.RES_ANN_Id == request.RES_ANN_Id && (item.RES_STATRES_Id == 2 || item.RES_STATRES_Id == 3)); // 2 ("Confirme" or "EnOrdre")
+            var vehicule = _context.Vehicule.Where(item => item.VEH_Id == annonce.First().ANN_VEH_Id);
+            if (listReservation.Count() >= vehicule.First().VEH_NombrePlace) throw new Exception("Er is no free places");
 
             // Creation reservation
             var entity = new Domain.Entities.Reservation
@@ -63,6 +67,17 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
             await _context.SaveChangesAsync(cancellationToken);
 
             return entity.RES_Id;
+        }
+        private bool TooLate(DateTime dateTimeDepart)
+        {
+            double minutes = 0;
+            if (dateTimeDepart.Date >= DateTime.Now.Date)
+            {
+                TimeSpan timespan = dateTimeDepart - DateTime.Now;
+                minutes = timespan.TotalMinutes;
+                if (minutes >= 15) return false;
+            }
+            return true;
         }
     }
 }
