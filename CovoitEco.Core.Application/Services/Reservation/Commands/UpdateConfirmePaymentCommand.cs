@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using CovoitEco.Core.Application.Common.Interfaces;
+﻿using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
 using CovoitEco.Core.Application.Services.Reservation.Queries;
 using MediatR;

@@ -34,12 +34,14 @@ namespace CovoitEco.APP.Components.Annonce
             }
         }
 
+        // Check if user had already a reservation (true in this cas)
         protected void CheckReservation() 
         {
+            int counter = responseAnnonce.Lists.Count;
             confirme = false;
             foreach (var reservation in responseGetAllReservationUser.Lists)
             {
-                if(reservation.RES_ANN_Id == idAnnonce) confirme = true;
+                if(reservation.RES_ANN_Id == idAnnonce) confirme = true; 
             }
         }
     }

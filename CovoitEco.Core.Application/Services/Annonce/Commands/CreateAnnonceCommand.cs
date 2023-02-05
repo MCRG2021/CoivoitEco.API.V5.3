@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using CovoitEco.Core.Application.Common.Interfaces;
+﻿using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.Filter;
-using CovoitEco.Core.Application.Services.VehiculeProfile.Commands;
 using MediatR;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace CovoitEco.Core.Application.Services.Annonce.Commands
 {
@@ -118,7 +110,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
 
             if (annonceOld.ANN_DateDepart < annonceNew.ANN_DateDepart && annonceOld.ANN_DateArrive < annonceNew.ANN_DateDepart)
             {
-                TimeSpan timespan = annonceNew.ANN_DateDepart - annonceNew.ANN_DateArrive;
+                TimeSpan timespan = annonceNew.ANN_DateDepart - annonceOld.ANN_DateArrive;
                 minutes = timespan.TotalMinutes;
                 if (minutes > 60) return false;
             }

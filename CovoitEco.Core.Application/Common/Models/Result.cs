@@ -1,5 +1,4 @@
-﻿
-namespace CovoitEco.Core.Application.Common.Models
+﻿namespace CovoitEco.Core.Application.Common.Models
 {
     public class Result
     {

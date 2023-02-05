@@ -1,8 +1,6 @@
 ﻿using CovoitEco.Core.Application.Services.Annonce.Commands;
 using CovoitEco.Core.Application.Services.Annonce.Queries;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoivoitEco.API.Controllers

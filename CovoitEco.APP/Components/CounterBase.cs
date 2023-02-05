@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 
+/// <summary>
+/// Test class
+/// </summary>
 namespace CovoitEco.APP.Components
 {
     public class CounterBase : ComponentBase

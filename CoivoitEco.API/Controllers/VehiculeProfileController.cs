@@ -1,9 +1,6 @@
-﻿using CoivoitEco.API.Filter;
-using CovoitEco.Core.Application.Filter;
-using CovoitEco.Core.Application.Services.VehiculeProfile.Commands;
+﻿using CovoitEco.Core.Application.Services.VehiculeProfile.Commands;
 using CovoitEco.Core.Application.Services.VehiculeProfile.Queries;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoivoitEco.API.Controllers

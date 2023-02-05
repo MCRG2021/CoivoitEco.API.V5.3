@@ -1,5 +1,4 @@
-﻿using CoivoitEco.API.Filter;
-using CovoitEco.Core.Application.Filter;
+﻿using CovoitEco.Core.Application.Filter;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CoivoitEco.API.Handler

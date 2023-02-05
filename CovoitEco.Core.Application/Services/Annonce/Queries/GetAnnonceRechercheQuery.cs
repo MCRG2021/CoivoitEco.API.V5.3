@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.Filter;
+using CovoitEco.Core.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +28,10 @@ namespace CovoitEco.Core.Application.Services.Annonce.Queries
 
         public async Task<AnnonceProfileVm> Handle(GetAnnonceRechercheQuery request, CancellationToken cancellationToken) // no tested again 
         {
+            // Check if user is the owner
+            var userList = _context.Utilisateur.Where(item => item.UTL_Mail == EmailAuthorizationCheck.email);
+            var user = userList.First();
+
             List<AnnonceProfileDTO> listAnnonce = await (
                 from a in _context.Annonce
                 join s in _context.StatutAnnonce on a.ANN_STATANN_Id equals s.STATANN_Id
@@ -63,7 +64,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Queries
                 string arrCity = ExtractCity(a.ANNPR_LocaliteArrive);
                 if ((ExtractCity(a.ANNPR_LocaliteDepart) == UpperCaseFirstLetter(request.ANNREC_VilleDepart)) &&
                     (ExtractCity(a.ANNPR_LocaliteArrive) == UpperCaseFirstLetter(request.ANNREC_VilleArrive)) &&
-                    (TooLate(a.ANNPR_DateDepart) == false)) 
+                    (TooLate(a.ANNPR_DateDepart) == false) && Owner(a,user) == false) 
                 {
                     sortedListAnnonce.Add(a);
                 }
@@ -109,6 +110,13 @@ namespace CovoitEco.Core.Application.Services.Annonce.Queries
                 if (minutes >= 15) return false;
             }
             return true;
+        }
+
+        private bool Owner(AnnonceProfileDTO annonceDTO, Utilisateur user)
+        {
+            var annonce =  _context.Annonce.Where(item => item.ANN_Id == annonceDTO.ANNPR_Id);
+            if (annonce.First().ANN_UTL_Id == user.UTL_Id) return true;
+            return false;
         }
     }
 }

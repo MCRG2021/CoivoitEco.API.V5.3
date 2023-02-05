@@ -17,9 +17,9 @@ else
                 <li class="list-group-item">Immatriculation : @responseGetVehicule.Lists[0].VEHPR_Immatriculation</li>
                 <li class="list-group-item">Nombre de place : @responseGetVehicule.Lists[0].VEHPR_NombrePlace</li>
                 <li class="list-group-item">Norme Euro : @responseGetVehicule.Lists[0].VEHPR_NormeEuro</li>
-                <li class="list-group-item">Fumeur : @responseAnnonce.Lists[0].ANN_OptFumeur</li>
-                <li class="list-group-item">Animaux : @responseAnnonce.Lists[0].ANN_OptAnimaux</li>
-                <li class="list-group-item">Animaux : @responseAnnonce.Lists[0].ANN_OptAutoroute</li>
+                <li class="list-group-item">Fumeur : @Transalte(@responseAnnonce.Lists[0].ANN_OptFumeur).ToString()</li>
+                <li class="list-group-item">Animaux : @Transalte(@responseAnnonce.Lists[0].ANN_OptAnimaux).ToString()</li>
+                <li class="list-group-item">Animaux : @Transalte(@responseAnnonce.Lists[0].ANN_OptAutoroute).ToString()</li>
             </ul>
         </div>
 
@@ -73,4 +73,13 @@ else
         <a href="/CompteAnnonce" class="btn btn-primary">Page précédente</a>
     </div>
 
+}
+
+@code
+{
+    public string Transalte(bool boolean)
+    {
+        if (boolean == true) return "Oui";
+        else return "Non";
+    }
 }

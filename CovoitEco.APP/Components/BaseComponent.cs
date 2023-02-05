@@ -32,7 +32,7 @@ namespace CovoitEco.APP.Components
         public static int idFacture { get; set; }
 
         [Parameter]
-        public static int idUser { get; set; } //= 1; // idUser must be edit (default 1 for the moment => see data)
+        public static int idUser { get; set; } 
 
         [Parameter]
         public static bool confirme { get; set; }

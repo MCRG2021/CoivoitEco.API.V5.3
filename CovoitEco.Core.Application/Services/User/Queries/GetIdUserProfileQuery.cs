@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
-using CovoitEco.Core.Application.DTOs;
 using CovoitEco.Core.Application.Filter;
-using CovoitEco.Core.Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace CovoitEco.Core.Application.Services.User.Queries
 {

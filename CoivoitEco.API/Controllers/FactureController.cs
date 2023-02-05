@@ -1,7 +1,6 @@
 ﻿using CovoitEco.Core.Application.Services.Facture.Commands;
 using CovoitEco.Core.Application.Services.Facture.Queries;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoivoitEco.API.Controllers

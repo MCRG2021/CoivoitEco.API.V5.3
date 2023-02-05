@@ -84,6 +84,11 @@
 
 
 @code {
+
+    double minutes = 0;
+    bool overlap = true;
+    int counter = 0;
+
     private void HandleInvalidSubmit()
     {
         toastService.ShowError("Erreur");
@@ -91,7 +96,40 @@
 
     private async void HandleValidSubmit()
     {
-        await CreateAnnonceProfile();
-        toastService.ShowSuccess("Succès");
+        Update();
+        if (overlap == false)
+        {
+            await CreateAnnonceProfile();
+            toastService.ShowSuccess("Succès");
+        }
+        else
+        {
+            toastService.ShowError("Dates déja allouées");
+        }
+    }
+
+    private void Update()
+    {
+        counter = 0;
+        @foreach (var item in responseAnnonce.Lists)
+        {
+            if (item.ANNPR_DateDepart > requestAnnonceProfileFormular.ANN_DateDepart && item.ANNPR_DateArrive > requestAnnonceProfileFormular.ANN_DateArrive)
+            {
+                TimeSpan timespan = item.ANNPR_DateDepart - requestAnnonceProfileFormular.ANN_DateArrive;
+                minutes = timespan.TotalMinutes;
+                if (minutes > 60) overlap = false;
+            }
+            if (item.ANNPR_DateDepart < requestAnnonceProfileFormular.ANN_DateDepart && item.ANNPR_DateArrive < requestAnnonceProfileFormular.ANN_DateDepart)
+            {
+                TimeSpan timespan = requestAnnonceProfileFormular.ANN_DateDepart - item.ANNPR_DateArrive;
+                minutes = timespan.TotalMinutes;
+                if (minutes > 60) overlap = false;
+            }
+
+            if (overlap == false) counter++;
+
+            overlap = true;
+        }
+        if (counter == responseAnnonce.Lists.Count) overlap = false;
     }
 }

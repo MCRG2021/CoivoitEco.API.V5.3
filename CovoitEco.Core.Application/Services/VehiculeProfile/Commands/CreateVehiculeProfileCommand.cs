@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CovoitEco.Core.Application.Common.Interfaces;
+﻿using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.Filter;
-using FluentValidation.AspNetCore;
 using MediatR;
 
 namespace CovoitEco.Core.Application.Services.VehiculeProfile.Commands

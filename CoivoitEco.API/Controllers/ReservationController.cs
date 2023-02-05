@@ -18,6 +18,7 @@ namespace CoivoitEco.API.Controllers
             _logger = logger;
         }
 
+        [Authorize("read:messages")]
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

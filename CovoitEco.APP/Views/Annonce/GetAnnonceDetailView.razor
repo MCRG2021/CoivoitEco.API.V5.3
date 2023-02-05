@@ -57,9 +57,9 @@ else
 
     <div classe="container pt-5">
         <h3>Options</h3>
-        <p>Fumeur : @responseAnnonce.Lists[0].ANN_OptFumeur</p>
-        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAnimaux</p>
-        <p>Animaux : @responseAnnonce.Lists[0].ANN_OptAutoroute</p>
+        <p>Fumeur : @Transalte(@responseAnnonce.Lists[0].ANN_OptFumeur).ToString()</p>
+        <p>Animaux : @Transalte(@responseAnnonce.Lists[0].ANN_OptAnimaux).ToString()</p>
+        <p>Animaux : @Transalte(@responseAnnonce.Lists[0].ANN_OptAutoroute).ToString()</p>
     </div>
 
 
@@ -75,3 +75,11 @@ else
     </div>
 }
 
+@code
+{
+    public string Transalte(bool boolean)
+    {
+        if (boolean == true) return "Oui";
+        else return "Non";
+    }
+}

@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using CovoitEco.API.Consume.Auth0.Interface.Role.Queries;
+﻿using CovoitEco.API.Consume.Auth0.Interface.Role.Queries;
 using CovoitEco.API.Consume.Auth0.Service.Token;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;

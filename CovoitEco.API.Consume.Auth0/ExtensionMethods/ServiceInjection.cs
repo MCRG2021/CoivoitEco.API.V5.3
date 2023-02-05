@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Camping.API.Consume.Auth0.Service.Role.Queries;
+﻿using Camping.API.Consume.Auth0.Service.Role.Queries;
 using CovoitEco.API.Consume.Auth0.Interface.Role.Commands;
 using CovoitEco.API.Consume.Auth0.Interface.Role.Queries;
 using CovoitEco.API.Consume.Auth0.Interface.User.Commands;

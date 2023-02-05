@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CovoitEco.Core.Application.Common.Exceptions;
-using CovoitEco.Core.Application.Common.Interfaces;
-using CovoitEco.Core.Application.DTOs;
-using CovoitEco.Core.Application.Services.Reservation.Queries;
+﻿using CovoitEco.Core.Application.Common.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace CovoitEco.Core.Application.Services.Annonce.Commands
 {

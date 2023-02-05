@@ -1,4 +1,3 @@
-using CoivoitEco.API.Filter;
 using CoivoitEco.API.Handler;
 using CoivoitEco.API.Middlewares;
 using CovoitEco.API.Consume.Auth0.ExtensionMethods;
@@ -86,7 +85,7 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseRouting(); // test 
+app.UseRouting(); 
 
 app.UseAuthentication();
 

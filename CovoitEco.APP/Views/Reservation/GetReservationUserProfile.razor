@@ -31,10 +31,6 @@ else
             <table class="table">
                 <thead class="table-dark">
                     <tr>
-                        @* <th scope="col">Localité de départ</th>
-                        <th scope="col">Date de départ</th>
-                        <th scope="col">Localité de d'arrivé</th>
-                        <th scope="col">Date d'arrivé</th>*@
                         <th scope="col">Date de départ</th>
                         <th scope="col">Heure de départ</th>
                         <th scope="col">Localité de départ</th>
@@ -47,10 +43,6 @@ else
                     @foreach (var reservationUserProfile in responseGetReservationUser.Lists)
                     {
                         <tr>
-                            @* <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
-                            <td>@reservationUserProfile.RES_ANN_DateDepart</td>
-                            <td>@reservationUserProfile.RES_ANN_LocaliteArrive</td>
-                            <td>@reservationUserProfile.RES_ANN_DateArrive</td>*@
                             <td>@reservationUserProfile.RES_ANN_DateDepart.Year/@reservationUserProfile.RES_ANN_DateDepart.Month/@reservationUserProfile.RES_ANN_DateDepart.Day</td>
                             <td>@reservationUserProfile.RES_ANN_DateDepart.Hour : @reservationUserProfile.RES_ANN_DateDepart.Minute</td>
                             <td>@reservationUserProfile.RES_ANN_LocaliteDepart</td>
@@ -73,9 +65,9 @@ else
 
             <div class="col-2">
                 <h3>Options</h3>
-                <p>Fumeur : @responseGetReservationUser.Lists[0].RES_ANN_OptFumeur</p>
-                <p>Animaux : @responseGetReservationUser.Lists[0].RES_ANN_OptAnimaux</p>
-                <p>Animaux : @responseGetReservationUser.Lists[0].RES_ANN_OptAutoroute</p>
+                <p>Fumeur : @Transalte(@responseGetReservationUser.Lists[0].RES_ANN_OptFumeur).ToString()</p>
+                <p>Animaux : @Transalte(@responseGetReservationUser.Lists[0].RES_ANN_OptAnimaux).ToString()</p>
+                <p>Animaux : @Transalte(@responseGetReservationUser.Lists[0].RES_ANN_OptAutoroute).ToString()</p>
             </div>
 
 
@@ -98,4 +90,13 @@ else
     <div class="container pt-5">
         <a href="/CompteReservation" class="btn btn-primary">Retour à la page précèdente</a>
     </div>
+}
+
+@code
+{
+    public string Transalte(bool boolean)
+    {
+        if (boolean == true) return "Oui";
+        else return "Non";
+    }
 }

@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using CovoitEco.API.Consume.Auth0.Interface.Role.Commands;
+﻿using CovoitEco.API.Consume.Auth0.Interface.Role.Commands;
 using CovoitEco.API.Consume.Auth0.Interface.User.Commands;
 using CovoitEco.API.Consume.Auth0.Models;
 using CovoitEco.Core.Application.Common.Interfaces;
-using CovoitEco.Core.Application.DTOs;
-using CovoitEco.Core.Application.Services.Reservation.Commands;
-using CovoitEco.Core.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using Polly.Retry;
 
 namespace CovoitEco.Core.Application.Services.User.Commands
 {

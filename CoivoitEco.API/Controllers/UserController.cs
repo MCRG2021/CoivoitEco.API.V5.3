@@ -2,11 +2,8 @@
 using CovoitEco.API.Consume.Auth0.Interface.User.Commands;
 using CovoitEco.API.Consume.Auth0.Interface.User.Queries;
 using CovoitEco.API.Consume.Auth0.Models;
-using CovoitEco.Core.Application.Filter;
-using CovoitEco.Core.Application.Services.Annonce.Queries;
 using CovoitEco.Core.Application.Services.User.Commands;
 using CovoitEco.Core.Application.Services.User.Queries;
-using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
