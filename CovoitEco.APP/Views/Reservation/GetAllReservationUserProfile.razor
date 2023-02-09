@@ -39,12 +39,23 @@ else
                             <a @onclick="@(() => UpdateIdReservation(reservationUserProfile.RES_Id))" href="/DetailReservation" class="btn btn-primary">Detail</a> |
                             @if (@reservationUserProfile.RES_FACT_FactureResolus == false && @reservationUserProfile.RES_ANN_StatutLibelle == "EnCours")
                             {
-                                <a class="btn btn-primary" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</a>
+                                <a class="btn btn-primary" @onclick="@(() => UpdateFacturePayment(reservationUserProfile.RES_Id))">Payer</a> 
                             }
                             else
                             {
-                                <button class="btn btn-secondary" disabled>Payer</button>
+                                <button class="btn btn-secondary" disabled>Payer</button> 
                             }
+                            <div Class="container pt-3">
+                                @if (@reservationUserProfile.RES_FACT_StatutLibelle == "EnAttente")
+                                {
+                                    <a class="btn btn-primary" @onclick="@(() => DeleteReservation(reservationUserProfile.RES_Id))">Supprimer</a> 
+                                }
+                                else
+                                {
+                                    <button class="btn btn-secondary" disabled>Supprimer</button> 
+                                }
+                            </div>
+                          
                         </td>
                     </tr>
                 }

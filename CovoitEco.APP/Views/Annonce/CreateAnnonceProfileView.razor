@@ -82,7 +82,6 @@
     <a class="btn btn-primary" href="/CompteAnnonce">Retourner vers la liste</a>
 </div>
 
-
 @code {
 
     double minutes = 0;
@@ -97,7 +96,11 @@
     private async void HandleValidSubmit()
     {
         Update();
-        if (overlap == false)
+        if (responseGetVehicule.Lists.Count == 0)
+        {
+            toastService.ShowError("Vous ne possédez pas de véhicule courant");
+        }
+        else if (overlap == false)
         {
             await CreateAnnonceProfile();
             toastService.ShowSuccess("Succès");

@@ -57,7 +57,7 @@ namespace CovoitEco.Core.Application.Services.User.Commands
             user.app_metadata = new AppMetadata();
             user.user_metadata = new UserMetadata();
             user.blocked = false;
-            user.email_verified = false;
+            user.email_verified = true;
             user.verify_email = false;
             user.connection = "Username-Password-Authentication";
             user.picture = "https://www.google.co.in/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";

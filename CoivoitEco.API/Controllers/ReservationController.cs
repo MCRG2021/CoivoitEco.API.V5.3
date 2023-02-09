@@ -169,5 +169,24 @@ namespace CoivoitEco.API.Controllers
                 throw;
             }
         }
+
+        [Authorize("write:messages")]
+        [HttpPut("[action]")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<int>> DeleteReservation(int id)
+        {
+            try
+            {
+                _logger.LogInformation("DeleteReservation");
+                return await Mediator.Send(new UpdateStatutReservationCommand() { RES_Id = id });
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Request DeleteReservation fail");
+                throw;
+            }
+        }
     }
 }

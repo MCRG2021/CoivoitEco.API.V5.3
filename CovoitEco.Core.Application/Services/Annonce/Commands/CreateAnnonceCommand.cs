@@ -65,7 +65,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Commands
             var annonce = _context.Annonce.Where(item => item.ANN_UTL_Id == request.ANN_UTL_Id);
             foreach (var item in annonce)
             {
-                
+                if (Overlap(item, entity)) throw new Exception("You can overlap an annonce");
             }
 
 

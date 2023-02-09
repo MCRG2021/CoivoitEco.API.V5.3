@@ -1,5 +1,7 @@
-﻿using CovoitEco.Core.Application.Common.Interfaces;
+﻿using System.Data;
+using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
+using CovoitEco.Core.Application.ExtensionMethods;
 using CovoitEco.Core.Application.Filter;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,10 +32,10 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
             var user = await _context.Utilisateur.FindAsync(request.RES_UTL_Id);
             if (user.UTL_Mail != EmailAuthorizationCheck.email) throw new Exception("Bad user");
 
-            // Test if user haf a reservation 
+            // Test if user had a reservation (an "Annule" reservation don't count) 
             List<AnnonceReservationDTO> list = new List<AnnonceReservationDTO>();
             list = await (from r in _context.Reservation
-                          where (r.RES_ANN_Id == request.RES_ANN_Id) && (r.RES_UTL_Id == request.RES_UTL_Id)
+                          where (r.RES_ANN_Id == request.RES_ANN_Id) && (r.RES_UTL_Id == request.RES_UTL_Id) && (r.RES_STATRES_Id != 4) 
                           select new AnnonceReservationDTO
                           {
 
@@ -66,6 +68,10 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
                 RES_STATRES_Id = 1, // by default 
                 RES_UTL_Id = request.RES_UTL_Id
             };
+
+            //Test if had a overlap reservation
+            var allAnnonce = _context.Annonce.Where(item => item.ANN_STATANN_Id != 3 && item.ANN_UTL_Id != user.UTL_Id);
+            if (OverlapControler.OverlapReservation(annonce.First(), allAnnonce.ToList())) throw new Exception("Reservation conflict");
 
             _context.Reservation.Add(entity);
 

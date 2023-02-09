@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
+using AutoMapper;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
 using CovoitEco.Core.Application.Filter;
@@ -32,6 +33,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Queries
             var userList = _context.Utilisateur.Where(item => item.UTL_Mail == EmailAuthorizationCheck.email);
             var user = userList.First();
 
+            // All annonce
             List<AnnonceProfileDTO> listAnnonce = await (
                 from a in _context.Annonce
                 join s in _context.StatutAnnonce on a.ANN_STATANN_Id equals s.STATANN_Id

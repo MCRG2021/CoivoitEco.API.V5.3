@@ -28,7 +28,7 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
 
                 if (reservation.RES_STATRES_Id == 1 && annonce.ANN_STATANN_Id != 1) //  reservation "EnAttente" and annonce not "Publier"
                 {
-                    reservation.RES_STATRES_Id = 4; // reservation cancel
+                    reservation.RES_STATRES_Id = 4; // reservation canceled
                 }
 
             }

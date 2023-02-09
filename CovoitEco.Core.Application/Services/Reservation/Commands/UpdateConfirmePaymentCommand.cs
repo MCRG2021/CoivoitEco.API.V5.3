@@ -55,7 +55,7 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
                     join f in _context.Facture on r.RES_Id equals f.FACT_RES_Id
                     join sr in _context.StatutReservation on r.RES_STATRES_Id equals sr.STATRES_Id
                     join u in _context.Utilisateur on r.RES_UTL_Id equals u.UTL_Id
-                    where r.RES_ANN_Id == reservation.RES_ANN_Id
+                    where r.RES_ANN_Id == reservation.RES_ANN_Id && r.RES_STATRES_Id != 4 // Don't count canceled reservation
                     select new ReservationProfileDTO()
                     {
                         RESPR_Id = r.RES_Id,

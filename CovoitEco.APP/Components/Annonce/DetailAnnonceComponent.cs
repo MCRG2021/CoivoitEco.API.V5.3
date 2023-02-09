@@ -41,7 +41,7 @@ namespace CovoitEco.APP.Components.Annonce
             confirme = false;
             foreach (var reservation in responseGetAllReservationUser.Lists)
             {
-                if(reservation.RES_ANN_Id == idAnnonce) confirme = true; 
+                if(reservation.RES_ANN_Id == idAnnonce && reservation.RES_FACT_StatutLibelle != "Annule") confirme = true; // don't count a reservation in status "Annule"
             }
         }
     }

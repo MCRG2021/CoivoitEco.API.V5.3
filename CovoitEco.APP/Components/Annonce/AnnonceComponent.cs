@@ -11,6 +11,7 @@ namespace CovoitEco.APP.Components.Annonce
         {
             await Initialized();
             responseAnnonce = await AnnonceQueries.GetAllAnnonceProfile(idUser); // Id user current 
+            responseGetVehicule = await vehiculeQueries.GetVehiculeProfile(idUser); // To check if I can publish a "annonce"
             await UpdateAnnonceStatut(); // Check and update statut annonce
         }
 

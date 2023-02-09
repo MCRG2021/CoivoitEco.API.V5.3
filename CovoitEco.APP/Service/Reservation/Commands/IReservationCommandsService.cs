@@ -8,5 +8,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
         public Task UpdateConfirmePayment(int id);
         public Task UpdateAccepterReservation(int id);
         public Task UpdateStatutReservation(int id);
+
+        public Task DeleteResevation(int id);
     }
 }

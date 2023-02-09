@@ -25,5 +25,10 @@ namespace CovoitEco.APP.Components.Reservation
                 }
             }
         }
+
+        protected async Task DeleteReservation(int id)
+        {
+            await ReservationCommands.DeleteResevation(id);
+        }
     }
 }
