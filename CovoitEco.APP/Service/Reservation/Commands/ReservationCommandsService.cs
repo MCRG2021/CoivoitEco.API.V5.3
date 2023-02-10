@@ -69,7 +69,7 @@ namespace CovoitEco.APP.Service.Reservation.Commands
         {
             await _retrypolicy.ExecuteAsync(async () =>
             {
-                var putReservation = await _httpClient.PutAsJsonAsync("https://localhost:7197/api/Reservation/DeleteReservation?id=" + id, id);
+                var putReservation = await _httpClient.PutAsJsonAsync("https://localhost:7197/api/Reservation/DeleteReservation?id=" + id, id); 
                 if (!putReservation.IsSuccessStatusCode)
                     throw new Exception();
             });

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Linq;
 using CovoitEco.Core.Application.Common.Interfaces;
 using CovoitEco.Core.Application.DTOs;
 using CovoitEco.Core.Application.ExtensionMethods;
@@ -71,7 +72,16 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
 
             //Test if had a overlap reservation
             var allAnnonce = _context.Annonce.Where(item => item.ANN_STATANN_Id != 3 && item.ANN_UTL_Id != user.UTL_Id);
-            if (OverlapControler.OverlapReservation(annonce.First(), allAnnonce.ToList())) throw new Exception("Reservation conflict");
+            var annonceOverlap = OverlapControler.OverlapReservation(annonce.First(), allAnnonce.ToList());
+            if (annonceOverlap.Count > 0)
+            {
+                foreach (var overlapItem in annonceOverlap)
+                {
+                  var reservationOverlap = _context.Reservation.Where(item => item.RES_ANN_Id == overlapItem.ANN_UTL_Id);
+                  if (reservationOverlap != null) 
+                      if(reservationOverlap.Count() > 0) throw new Exception("Reservation for annonce overlap");
+                }
+            }
 
             _context.Reservation.Add(entity);
 

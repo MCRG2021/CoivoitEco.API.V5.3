@@ -37,7 +37,7 @@ namespace CovoitEco.Core.Application.Services.Reservation.Queries
                 join u in _context.Utilisateur on a.ANN_UTL_Id equals u.UTL_Id
                 join v in _context.Vehicule on a.ANN_UTL_Id equals v.VEH_UTL_Id
                 join sa in _context.StatutAnnonce on a.ANN_STATANN_Id equals sa.STATANN_Id
-                where r.RES_UTL_Id == request.UTL_Id 
+                where r.RES_UTL_Id == request.UTL_Id && r.RES_STATRES_Id != 4
                 orderby r.RES_Id
                 select new ReservationUserProfileDTO()
                 {

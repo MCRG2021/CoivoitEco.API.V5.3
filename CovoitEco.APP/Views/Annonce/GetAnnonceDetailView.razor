@@ -37,6 +37,7 @@ else
                     <th scope="col">Heure de départ</th>
                     <th scope="col">Localité de d'arrivé</th>
                     <th scope="col">Date d'arrivé</th>
+                    <th scope="col">Heure d'arrivé</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,8 @@ else
                         <td>@annonceProfile.ANNPR_DateDepart.Year/@annonceProfile.ANNPR_DateDepart.Month/@annonceProfile.ANNPR_DateDepart.Day</td>
                         <td>@annonceProfile.ANNPR_DateDepart.Hour : @annonceProfile.ANNPR_DateDepart.Minute</td>
                         <td>@annonceProfile.ANNPR_LocaliteArrive</td>
-                        <td>@annonceProfile.ANNPR_DateArrive</td>
+                        <td>@annonceProfile.ANNPR_DateArrive.Year/@annonceProfile.ANNPR_DateArrive.Month/@annonceProfile.ANNPR_DateArrive.Day</td>
+                        <td>@annonceProfile.ANNPR_DateArrive.Hour : @annonceProfile.ANNPR_DateArrive.Minute</td>
                     </tr>
                 }
                 </tbody>

@@ -10,14 +10,14 @@ namespace CovoitEco.Core.Application.ExtensionMethods
 {
     public static class OverlapControler
     {
-        public static bool OverlapReservation(Annonce annonceReservation, List<Annonce> allAnnonceList)
+        public static List<Annonce> OverlapReservation(Annonce annonceReservation, List<Annonce> allAnnonceList)
         {
-            foreach (var annnonceList in allAnnonceList)
+            List<Annonce> annonceOverlapList = new List<Annonce>();
+            foreach (var annonceList in allAnnonceList)
             {
-                if (Overlap(annnonceList, annonceReservation)) return true;
+                if (Overlap(annonceList, annonceReservation)) annonceOverlapList.Add(annonceList);
             }
-
-            return false;
+            return annonceOverlapList;
         }
 
 

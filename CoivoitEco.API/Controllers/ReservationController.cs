@@ -180,7 +180,7 @@ namespace CoivoitEco.API.Controllers
             try
             {
                 _logger.LogInformation("DeleteReservation");
-                return await Mediator.Send(new UpdateStatutReservationCommand() { RES_Id = id });
+                return await Mediator.Send(new DeleteReservationCommand(){ RES_Id = id });
             }
             catch (Exception e)
             {
