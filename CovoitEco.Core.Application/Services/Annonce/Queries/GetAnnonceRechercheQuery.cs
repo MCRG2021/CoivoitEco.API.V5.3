@@ -75,7 +75,7 @@ namespace CovoitEco.Core.Application.Services.Annonce.Queries
             // Check if her is again a free places
             foreach (var annonce in sortedListAnnonce)
             {
-                var reservationList = _context.Reservation.Where(item => item.RES_ANN_Id == item.RES_ANN_Id &&
+                var reservationList = _context.Reservation.Where(item => item.RES_ANN_Id == annonce.ANNPR_Id &&
                                                                          item.RES_STATRES_Id != 4 && item.RES_STATRES_Id != 1); // to get count reservation (don't count "Annulle" and "EnAttente")
                 var annonceList = _context.Annonce.Where(item => item.ANN_Id == annonce.ANNPR_Id); // to get id veh
                 var vehiculeList = _context.Vehicule.Where(item => item.VEH_Id == annonceList.First().ANN_VEH_Id); // to get "Nombre de place" veh

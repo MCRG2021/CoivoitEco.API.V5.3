@@ -33,5 +33,14 @@ namespace CovoitEco.APP.Components.Annonce
                 }
             }
         }
+
+        /// <summary>
+        /// to refresh data
+        /// </summary>
+        /// <returns></returns>
+        protected async Task UpdateAnnonceList()
+        {
+            responseAnnonce = await AnnonceQueries.GetAllAnnonceProfile(idUser); // Id user current 
+        }
     }
 }

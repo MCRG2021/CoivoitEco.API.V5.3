@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="container pt-2">
-                <button class="btn btn-primary" type="submit">Publier</button>
+                <button class="btn btn-primary" href="/CompteAnnonce" type="submit">Publier</button>
             </div>
         </EditForm>
     </div>
@@ -103,6 +103,7 @@
         else if (overlap == false)
         {
             await CreateAnnonceProfile();
+            await UpdateAnnonceList();
             toastService.ShowSuccess("Succès");
         }
         else

@@ -70,7 +70,7 @@ namespace CovoitEco.Core.Application.Services.Reservation.Commands
                 RES_UTL_Id = request.RES_UTL_Id
             };
 
-            //Test if had a overlap reservation
+            //Test if I had an overlap reservation
             var allAnnonce = _context.Annonce.Where(item => item.ANN_STATANN_Id != 3 && item.ANN_UTL_Id != user.UTL_Id);
             var annonceOverlap = OverlapControler.OverlapReservation(annonce.First(), allAnnonce.ToList());
             if (annonceOverlap.Count > 0)
